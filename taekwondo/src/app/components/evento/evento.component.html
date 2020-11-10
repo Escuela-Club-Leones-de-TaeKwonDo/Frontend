@@ -1,0 +1,94 @@
+<!-- Header  -->
+<div class="card-header">
+    <h3>Eventos</h3>
+</div>
+
+<!-- Body  -->
+<div class="card-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Fecha de Inicio</th>
+                <th class="text-center">Fecha de Finalización</th>
+                <th class="text-center">Costo</th>
+                <th class="text-center">Enlace de Facebook</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let evento of eventos">
+                <td class="text-center">{{ evento.nombre }}</td>
+                <td class="text-center">{{ evento.fecha_inicio }}</td>
+                <td class="text-center">{{ evento.fecha_fin }}</td>
+                <td class="text-center">{{ evento.costo }}</td>
+                <td class="text-center">{{ evento.enlace_facebook }}</td>
+
+                <td>
+                    <div>
+                        <button (click)="updateEvento(evento)" type="button">Editar </button>
+                        &nbsp;&nbsp;
+                        <button (click)="deleteEvento(evento.id)" type="button">Eliminar </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<br><br>
+
+<div>
+    <form [formGroup]="eventoForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="nombre">Nombre*</label>
+            <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
+            <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                <div *ngIf="f.nombre.errors.required">El nombre del evento es obligatorio</div>
+            </div>
+        </div>
+
+
+  
+        <div class="form-group">
+          <label for="fecha_inicio">Fecha de Inicio*</label>
+          <input type="date" formControlName="fecha_inicio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fecha_inicio.errors }" />
+          <div *ngIf="submitted && f.fecha_inicio.errors" class="invalid-feedback">
+            <div *ngIf="f.fecha_inicio.errors.required">La fecha de inicio del evento es obligatorio</div>
+          </div>
+      </div>
+
+      <div class="form-group">
+         <label for="fecha_fin">Fecha de Finalizacion*</label>
+         <input type="date" formControlName="fecha_fin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fecha_fin.errors }" />
+         <div *ngIf="submitted && f.fecha_fin.errors" class="invalid-feedback">
+             <div *ngIf="f.fecha_fin.errors.required">La fecha de finalizacion del evento es obligatorio</div>
+         </div>
+      </div>
+  
+       <div class="form-group">
+          <label for="costo">Costo*</label>
+          <input type="text" formControlName="costo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.costo.errors }" />
+          <div *ngIf="submitted && f.costo.errors" class="invalid-feedback">
+             <div *ngIf="f.costo.errors.required">El costo del evento es obligatorio</div>
+          </div>
+     </div>
+  
+        <div class="form-group">
+            <label for="enlace_facebook">Enlace de Facebook*</label>
+            <input type="URI" formControlName="enlace_facebook" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.enlace_facebook.errors }" />
+            <div *ngIf="submitted && f.enlace_facebook.errors" class="invalid-feedback">
+              <div *ngIf="f.enlace_facebook.errors.required">El enlace del evento en Facebook es obligatorio</div>
+            </div>
+        </div>
+
+        <p>* Campos requeridos</p>
+        <div>
+            <button>Guardar</button>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button>Cerrar</button>
+</div>

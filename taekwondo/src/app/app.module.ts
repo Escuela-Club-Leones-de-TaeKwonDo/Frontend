@@ -7,11 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { EventoComponent } from './components/evento/evento.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AlumnoComponent
+    AlumnoComponent,
+    EventoComponent
   ],
   imports: [
     BrowserModule,
