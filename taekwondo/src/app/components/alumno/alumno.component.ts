@@ -16,6 +16,7 @@ export class AlumnoComponent implements OnInit {
   alumnos: Alumno[] | any;
   alumno: Alumno | any;
   alumnoForm: FormGroup;
+  imagen: File;
   submitted = false;
 
   constructor(private alumnoService: AlumnoService, private formBuilder: FormBuilder) { }
@@ -113,6 +114,22 @@ export class AlumnoComponent implements OnInit {
     this.alumnoForm.controls['carta_responsiva'].setValue(alumno.carta_responsiva);
     this.alumnoForm.controls['password'].setValue(alumno.password);
     this.alumnoForm.controls['email'].setValue(alumno.email);
+  }
+
+  imagenSelected(event){
+    this.imagen = <File> event.target.files[0];
+  }
+
+  convertImage(thiss): any {
+    let reader = new FileReader();
+    reader.readAsDataURL(thiss.imagen);
+    reader.onload = function () {
+      thiss.alumnoForm.controls['fotografia'].setValue(reader.result);
+    };
+    
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
   }
 
   get f() { return this.alumnoForm.controls; }
