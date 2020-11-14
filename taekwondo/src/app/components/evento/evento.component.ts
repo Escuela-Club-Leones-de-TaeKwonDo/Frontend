@@ -2,13 +2,14 @@
 * Clase que sirve para la manipulación de datos del componente evento
 */
 import { Component, OnInit } from '@angular/core';
-//Pra el formulario de registro de evento
+//Para el formulario de registro de evento
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Evento } from 'src/app/_models/evento';
 import { EventoService } from 'src/app/_services/evento.service'
 
 import Swal from 'sweetalert2';
+declare var event: any;
 
 @Component({
   selector: 'app-evento',
@@ -28,12 +29,12 @@ export class EventoComponent implements OnInit {
     this.eventoForm = this.formBuilder.group({
       id_evento: [''],
       nombre: ['', Validators.required],
-      //id_tipo_evento: ['', Validators.required],
+      id_tipo_evento: ['', Validators.required],
       descripcio: ['', Validators.required],
       fecha_inicio: ['', Validators.required],
       fecha_fin: ['', Validators.required],
-      enlace_facebook: [''],
-      costo: ['', Validators.required]
+      costo: ['', Validators.required],
+      enlace_facebook: ['']
 
     });
     //Consulte la lista de eventos
@@ -50,6 +51,10 @@ export class EventoComponent implements OnInit {
       },
       err => console.error(err)
     )
+
+    //this.eventos = [new Evento("EDC",1 ,"electronica","1970-08-25T00:00:00.000+00:00","1970-08-25T00:00:00.000+00:00", 50, "http:tony")]; 
+    
+
   }
 
   // Consultar un evento
@@ -99,18 +104,24 @@ export class EventoComponent implements OnInit {
   }
 
   // Actualizar un evento
-  updateAlumno(evento: Evento){
+  updateEvento(evento: Evento){
     this.submitted = true;
 
     this.eventoForm.controls['id_evento'].setValue(evento.id_evento);
     this.eventoForm.controls['nombre'].setValue(evento.nombre);
-    //this.eventoForm.controls['id_tipo_evento'].setValue(evento.id_tipo_evento);
+    this.eventoForm.controls['id_tipo_evento'].setValue(evento.id_tipo_evento);
     this.eventoForm.controls['descripcion'].setValue(evento.descripcion);
     this.eventoForm.controls['fecha_inicio'].setValue(evento.fecha_inicio);
     this.eventoForm.controls['fecha_fin'].setValue(evento.fecha_fin);
+    this.eventoForm.controls['costo'].setValue(evento.costo);
     this.eventoForm.controls['enlace_facebook'].setValue(evento.enlace_facebook);
-    this.eventoForm.controls['corto'].setValue(evento.costo);
+    
   }
 
   get f() { return this.eventoForm.controls; }
+
+  openModalEvento(){
+    this.eventoForm.reset();
+    event("#eventoModal").modal("show");
+  }
 }
