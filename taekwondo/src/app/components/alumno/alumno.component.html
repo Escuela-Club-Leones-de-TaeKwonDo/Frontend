@@ -1,49 +1,54 @@
-<!-- Header  -->
-<div class="card-header">
-    <h3>Alumno</h3>
-</div>
+<div class="container-fluid">
+    <div class="card border-dark mb-3">
+        <!-- Header  -->
+        <div class="card-header">
+            <h3 class="card-title">Alumno</h3>
+        </div>
 
-<!-- Body  -->
-<div class="card-body">
-    <table class="table">
-        <thead>
-            <tr>
-                <th class="text-center">Nombre</th>
-                <th class="text-center">Apellidos</th>
-                <th class="text-center">Fecha de Nacimiento</th>
-                <th class="text-center">Fotografia</th>
-                <th class="text-center">Actividad</th>
-                <th class="text-center">Grado</th>
-                <th class="text-center">Seguro Médico</th>
-                <th class="text-center">Certificado Médico</th>
-                <th class="text-center">Carta Responsiva</th>
-                <th class="text-center">Email</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let alumno of alumnos">
-                <td class="text-center">{{ persona.nombre }}</td>
-                <td class="text-center">{{ persona.apellidos }}</td>
-                <td class="text-center">{{ persona.fecha_nacimiento }}</td>
-                <td class="text-center">{{ persona.fotografia }}</td>
-                <td class="text-center">{{ persona.actividad }}</td>
-                <td class="text-center">{{ persona.grado }}</td>
-                <td class="text-center">{{ persona.seguro_medico }}</td>
-                <td class="text-center">{{ persona.certificado_medico }}</td>
-                <td class="text-center">{{ persona.carta_responsiva }}</td>
-                <td class="text-center">{{ persona.email }}</td>
+        <!-- Body  -->
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellidos</th>
+                        <th class="text-center">Fecha de Nacimiento</th>
+                        <th class="text-center">Fotografia</th>
+                        <th class="text-center">Actividad</th>
+                        <th class="text-center">Grado</th>
+                        <th class="text-center">Seguro Médico</th>
+                        <th class="text-center">Certificado Médico</th>
+                        <th class="text-center">Carta Responsiva</th>
+                        <th class="text-center">Email</th>
+                        <th></th>
+                    </tr>
+                </thead>
 
-                <td>
-                    <div>
-                        <button (click)="updateAlumno(alumno)" type="button">Editar </button>
-                        &nbsp;&nbsp;
-                        <button (click)="deleteAlumno(alumno.id_alumno)" type="button">Eliminar </button>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                <tbody>
+                    <tr *ngFor="let alumno of alumnos">
+                        <td class="text-center">{{ alumno.nombre }}</td>
+                        <td class="text-center">{{ alumno.apellidos }}</td>
+                        <td class="text-center">{{ alumno.fecha_nacimiento }}</td>
+                        <td class="text-center">{{ alumno.fotografia }}</td>
+                        <td class="text-center">{{ alumno.actividad }}</td>
+                        <td class="text-center">{{ alumno.grado }}</td>
+                        <td class="text-center">{{ alumno.seguro_medico }}</td>
+                        <td class="text-center">{{ alumno.certificado_medico }}</td>
+                        <td class="text-center">{{ alumno.carta_responsiva }}</td>
+                        <td class="text-center">{{ alumno.email }}</td>
+
+                        <td>
+                            <div>
+                                <button (click)="updateAlumno(alumno)" type="button">Editar </button>
+                                &nbsp;&nbsp;
+                                <button (click)="deleteAlumno(alumno.id_alumno)" type="button">Eliminar </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <br><br>
