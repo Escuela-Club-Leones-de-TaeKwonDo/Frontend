@@ -122,6 +122,6 @@ export class EventoComponent implements OnInit {
 
   openModalEvento(){
     this.eventoForm.reset();
-    event("#eventoModal").modal("show");
+    $("#eventoModal").modal("show");
   }
 }
