@@ -76,7 +76,7 @@ export class AlumnoComponent implements OnInit {
   // Crear un alumno
   onSubmit(){
     this.submitted = true;
-
+     console.log(this.alumnoForm)
     if(this.alumnoForm.invalid){
       console.log('Formulario inválido');
       return;

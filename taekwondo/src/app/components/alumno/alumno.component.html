@@ -84,13 +84,13 @@
 
         <label for="imagen">Fotografia*</label>
         <div class="custom-file">
-            <input type="file" accept="image/*" class="custom-file-input" (change)=imagenSelected($event)>
+            <input type="file" formControlName="fotografia" accept="image/*" class="custom-file-input" (change)=imagenSelected($event)>
             <label class="custom-file-label" for="customFile">Selecciona una imagen...</label>
         </div>
 
         <div class="form-group">
             <label for="actividad">Actividad Marcial</label>
-            <select formControlName="actividad" class="form-control" id="evento">
+            <select formControlName="actividad_marcial" class="form-control" id="evento">
                 <option [ngValue]="undefined" hidden>Selecciona una actividad...</option>
                 <option value="1">Tae kwon Do</option>
                 <option value="2">Kick Boxing</option>
@@ -110,25 +110,25 @@
 
         <label for="imagen">Seguro Médico*</label>
         <div class="custom-file">
-            <input type="file" accept="*/*" class="custom-file-input" (change)=imagenSelected($event)>
+            <input type="file" formControlName="seguro_medico" accept="*/*" class="custom-file-input" (change)=imagenSelected($event)>
             <label class="custom-file-label" for="customFile">Selecciona una archivo...</label>
         </div>
 
         <label for="imagen">Certificado Médico*</label>
         <div class="custom-file">
-            <input type="file" accept="*/*" class="custom-file-input" (change)=imagenSelected($event)>
+            <input type="file" formControlName="certificado_medico" accept="*/*" class="custom-file-input" (change)=imagenSelected($event)>
             <label class="custom-file-label" for="customFile">Selecciona una archivo...</label>
         </div>
 
         <label for="imagen">Carta Responsiva*</label>
         <div class="custom-file">
-            <input type="file" accept="*/*" class="custom-file-input" (change)=imagenSelected($event)>
+            <input type="file" formControlName="carta_responsiva" accept="*/*" class="custom-file-input" (change)=imagenSelected($event)>
             <label class="custom-file-label" for="customFile">Selecciona una archivo...</label>
         </div>
 
         <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-            <input name="usuario" type="email" placeholder="Correo" formControlName="email">
-            <input name="password" type="password" placeholder="Contraseña" formControlName="password">
+            <input name="usuario" formControlName="email" type="email" placeholder="Correo" formControlName="email">
+            <input name="password" formControlName="password" type="password" placeholder="Contraseña" formControlName="password">
         </div>
 
 
