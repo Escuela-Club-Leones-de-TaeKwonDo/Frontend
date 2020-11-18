@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Alumno } from 'src/app/_models/alumno';
 import { AlumnoService } from 'src/app/_services/alumno.service';
+declare var $: any;
 
 import Swal from 'sweetalert2';
 
@@ -18,6 +19,9 @@ export class AlumnoComponent implements OnInit {
   alumnoForm: FormGroup;
   imagen: File;
   submitted = false;
+  updated = false;
+
+
 
   constructor(private alumnoService: AlumnoService, private formBuilder: FormBuilder) { }
 
@@ -39,6 +43,25 @@ export class AlumnoComponent implements OnInit {
     //Consulte la lista de alumnos
     this.getAlumnos();
   }
+
+    // Crear una persona
+    createAlumno(){
+      this.submitted = true;
+  
+      if(this.alumnoForm.invalid){
+        console.log('Formulario inválido');
+        return;
+      }
+  
+      this.alumnoService.createAlumno(this.alumnoForm.value).subscribe(
+        res => {
+          this.getAlumnos();
+          $("#personaModal").modal("hide");
+        },
+        err => console.error(err)
+      )
+    }
+  
 
   // Consultar lista de alumnos
   getAlumnos(){
@@ -133,4 +156,14 @@ export class AlumnoComponent implements OnInit {
   }
 
   get f() { return this.alumnoForm.controls; }
+
+  openModalAlumno(){
+    this.alumnoForm.reset();
+    $("#alumnoModal").modal("show");
+  }
+
+  openUpdateModalAlumno(alumno){
+    $("#alumnoModal").modal("show");
+  }
+
 }

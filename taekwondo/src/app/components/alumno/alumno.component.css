@@ -1,25 +1,9 @@
-form{
-	width: 30%;
-	margin: 0 auto;
+.modal-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
 }
 
-form div {
-	margin-bottom: 20px;
-}
-
-form input {
-	height: 40px;
-}
-
-label {
-	font-weight: bold;
-}
-
-button {
-	border: 0;
-	outline: 0;
-	padding: 10px 20px;
-	background-color: green;
-	color: white;
-	border-radius: 5px;
+.table tbody tr.highlight td {
+	background-color: #ddd;
 }
