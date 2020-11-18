@@ -11,7 +11,7 @@ import { EventoComponent } from './components/evento/evento.component';
 
 import { TipoEventoComponent } from './components/tipo-evento/tipo-evento.component';
 
-import { ExamenComponent } from './components/examen/examen.component';
+// import { ExamenComponent } from './components/examen/examen.component';
 
 
 @NgModule({
@@ -20,7 +20,7 @@ import { ExamenComponent } from './components/examen/examen.component';
     AlumnoComponent,
     EventoComponent,
     TipoEventoComponent
-    ExamenComponent
+    // ExamenComponent
   ],
   imports: [
     BrowserModule,
