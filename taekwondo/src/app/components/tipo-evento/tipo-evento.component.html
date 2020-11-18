@@ -21,16 +21,16 @@
 				</thead>
 				<tbody>
 					<tr *ngFor="let tipoevento of tipoeventos">
-						<td class="text-center">{{ tipoevento.id_tipo_evento }}</td>
+						<td class="text-center">{{ tipoevento.id }}</td>
 						<td class="text-center">{{ tipoevento.nombre_tipo_evento }}</td>
 						<td class="text-center">{{ tipoevento.descripcion }}</td>
 
 						<td>
 							<div>
-								<button (click)="updateTipoEvento(evento)" type="button" class="btn btn-primary">Editar <i
+								<button (click)="updateTipoEvento(tipoevento)" type="button" class="btn btn-primary">Editar <i
 										class="fas fa-edit"></i></button>
 								&nbsp;&nbsp;
-								<button (click)="deleteTipoEvento(evento.id)" type="button" class="btn btn-danger">Eliminar <i
+								<button (click)="deleteTipoEvento(tipoevento.id)" type="button" class="btn btn-danger">Eliminar <i
 										class="fas fa-trash"></i></button>
 							</div>
 						</td>

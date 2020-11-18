@@ -61,7 +61,8 @@ export class TipoEventoComponent implements OnInit {
 
   // Eliminar un Evento
   deleteTipoEvento(id){
-    this.tipoevento.deleteTipoEvento(id).subscribe(
+    console.log(id)
+    this.tipoeventoService.deleteTipoEvento(id).subscribe(
       res => {
         this.getTipoEventos();
       },
