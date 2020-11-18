@@ -79,7 +79,7 @@ export class AlumnoComponent implements OnInit {
   // Crear un alumno
   onSubmit(){
     this.submitted = true;
-     console.log(this.alumnoForm)
+    
     if(this.alumnoForm.invalid){
       console.log('Formulario inválido');
       return;
@@ -144,6 +144,8 @@ export class AlumnoComponent implements OnInit {
     this.alumnoForm.controls['password'].setValue(alumno.password);
     this.alumnoForm.controls['email'].setValue(alumno.email);
 
+    
+    this.modalTitle = "Actualizar";
     $("#alumnoModal").modal("show");
   }
 
