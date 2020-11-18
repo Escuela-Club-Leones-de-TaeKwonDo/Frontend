@@ -17,6 +17,8 @@ declare var $: any;
   styleUrls: ['./evento.component.css']
 })
 export class EventoComponent implements OnInit {
+  //tipoEvento: TipoEvento[] | any;
+  //tipoEventos
   eventos: Evento[] | any;
   evento: Evento | any;
   eventoForm: FormGroup;
@@ -30,7 +32,7 @@ export class EventoComponent implements OnInit {
       id_evento: [''],
       nombre: ['', Validators.required],
       id_tipo_evento: ['', Validators.required],
-      descripcio: ['', Validators.required],
+      descripcion: ['', Validators.required],
       fecha_inicio: ['', Validators.required],
       fecha_fin: ['', Validators.required],
       costo: ['', Validators.required],
@@ -52,7 +54,7 @@ export class EventoComponent implements OnInit {
       err => console.error(err)
     )
 
-    //this.eventos = [new Evento("EDC",1 ,"electronica","1970-08-25T00:00:00.000+00:00","1970-08-25T00:00:00.000+00:00", 50, "http:tony")]; 
+    this.eventos = [new Evento(1, "EDC",1 ,"electronica","1970-08-25","1970-08-25", 50, "http:tony")]; 
     
 
   }
@@ -89,6 +91,7 @@ export class EventoComponent implements OnInit {
 
     this.eventoService.createEvento(this.eventoForm.value).subscribe(
       res => {
+        $("#eventoModal").modal("hide");
         Swal.fire({       //confirmacion de la accion de crear evento se a registrado correctamente
           position: 'top-end',
           icon: 'success',

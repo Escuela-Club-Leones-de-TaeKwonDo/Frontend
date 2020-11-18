@@ -9,11 +9,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { EventoComponent } from './components/evento/evento.component';
 
+import { TipoEventoComponent } from './components/tipo-evento/tipo-evento.component';
+
+// import { ExamenComponent } from './components/examen/examen.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     AlumnoComponent,
-    EventoComponent
+    EventoComponent,
+    TipoEventoComponent
+    // ExamenComponent
   ],
   imports: [
     BrowserModule,

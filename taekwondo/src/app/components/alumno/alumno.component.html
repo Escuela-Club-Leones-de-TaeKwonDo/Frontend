@@ -69,8 +69,7 @@
                 <form [formGroup]="alumnoForm" (ngSubmit)="onSubmit()">
                     <div class="form-group">
                         <label for="nombre">Nombre*</label>
-                        <input type="text" formControlName="nombre" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
+                        <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
                         <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
                             <div *ngIf="f.nombre.errors.required">El nombre del alumno es obligatorio</div>
                         </div>
@@ -78,8 +77,7 @@
 
                     <div class="form-group">
                         <label for="apellidos">Apellidos*</label>
-                        <input type="text" formControlName="apellidos" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.apellidos.errors }" />
+                        <input type="text" formControlName="apellidos" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellidos.errors }" />
                         <div *ngIf="submitted && f.apellidos.errors" class="invalid-feedback">
                             <div *ngIf="f.apellidos.errors.required">Los apellidos del alumno son obligatorios</div>
                         </div>
@@ -87,8 +85,7 @@
 
                     <div class="form-group">
                         <label for="fecha_nacimiento">Fecha de nacimiento*</label>
-                        <input type="date" formControlName="fecha_nacimiento" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.fecha_nacimiento.errors }" />
+                        <input type="date" formControlName="fecha_nacimiento" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fecha_nacimiento.errors }" />
                         <div *ngIf="submitted && f.fecha_nacimiento.errors" class="invalid-feedback">
                             <div *ngIf="f.fecha_nacimiento.errors.required">La fecha de nacimiento del alumno es obligatorio</div>
                         </div>
@@ -96,8 +93,7 @@
 
                     <label for="imagen">Fotografia*</label>
                     <div class="custom-file">
-                        <input type="file" formControlName="fotografia" accept="image/*" class="custom-file-input"
-                            (change)=imagenSelected($event)>
+                        <input type="file" formControlName="fotografia" accept="image/*" class="custom-file-input" (change)=imagenSelected($event)>
                         <label class="custom-file-label" for="customFile">Selecciona una imagen...</label>
                     </div>
 
@@ -123,29 +119,25 @@
 
                     <label for="imagen">Seguro Médico*</label>
                     <div class="custom-file">
-                        <input type="file" formControlName="seguro_medico" accept="*/*" class="custom-file-input"
-                            (change)=imagenSelected($event)>
+                        <input type="file" formControlName="seguro_medico" accept="*/*" class="custom-file-input" (change)=imagenSelected($event)>
                         <label class="custom-file-label" for="customFile">Selecciona una archivo...</label>
                     </div>
 
                     <label for="imagen">Certificado Médico*</label>
                     <div class="custom-file">
-                        <input type="file" formControlName="certificado_medico" accept="*/*" class="custom-file-input"
-                            (change)=imagenSelected($event)>
+                        <input type="file" formControlName="certificado_medico" accept="*/*" class="custom-file-input" (change)=imagenSelected($event)>
                         <label class="custom-file-label" for="customFile">Selecciona una archivo...</label>
                     </div>
 
                     <label for="imagen">Carta Responsiva*</label>
                     <div class="custom-file">
-                        <input type="file" formControlName="carta_responsiva" accept="*/*" class="custom-file-input"
-                            (change)=imagenSelected($event)>
+                        <input type="file" formControlName="carta_responsiva" accept="*/*" class="custom-file-input" (change)=imagenSelected($event)>
                         <label class="custom-file-label" for="customFile">Selecciona una archivo...</label>
                     </div>
 
                     <div style="display: flex; justify-content: space-between; margin-top: 20px;">
                         <input name="usuario" formControlName="email" type="email" placeholder="Correo" formControlName="email">
-                        <input name="password" formControlName="password" type="password" placeholder="Contraseña"
-                            formControlName="password">
+                        <input name="password" formControlName="password" type="password" placeholder="Contraseña" formControlName="password">
                     </div>
 
 
@@ -161,7 +153,6 @@
             <div class="modal-footer">
                 <button>Cerrar</button>
             </div>
-
         </div>
     </div>
-</div>
+ </div>
