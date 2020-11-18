@@ -6,6 +6,8 @@ import { AlumnoService } from 'src/app/_services/alumno.service';
 
 import Swal from 'sweetalert2';
 
+declare var $: any;
+
 @Component({
   selector: 'app-alumno',
   templateUrl: './alumno.component.html',
@@ -18,6 +20,7 @@ export class AlumnoComponent implements OnInit {
   alumnoForm: FormGroup;
   imagen: File;
   submitted = false;
+  modalTitle: String;
 
   constructor(private alumnoService: AlumnoService, private formBuilder: FormBuilder) { }
 
@@ -82,27 +85,53 @@ export class AlumnoComponent implements OnInit {
       return;
     }
 
-    this.alumnoService.createAlumno(this.alumnoForm.value).subscribe(
-      res => {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'El alumno ha sido creado',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.getAlumnos();
-        this.submitted = false;
-      },
-      err => console.error(err)
-    )
+    if(this.modalTitle == "Registrar"){
+      this.alumnoService.createAlumno(this.alumnoForm.value).subscribe(
+        res => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'El alumno ha sido creado',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          $("#alumnoModal").modal("hide");
+          this.getAlumnos();
+          this.submitted = false;
+        },
+        err => console.error(err)
+      )
+    }else{
+      console.log(this.alumnoForm.value);
+      this.alumnoService.updateAlumno(this.alumnoForm.value).subscribe(
+        res => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'El alumno ha sido actualizada',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          $("#alumnoModal").modal("hide");
+          this.alumnos();
+          this.submitted = false;
+        },
+        err => {
+          console.error(err);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Error al conectar con el servidor'
+          })
+        }
+      )
+    }
   }
 
   // Actualizar un alumno
   updateAlumno(alumno: Alumno){
     this.submitted = true;
 
-    this.alumnoForm.controls['id_alumno'].setValue(alumno.id_alumno);
     this.alumnoForm.controls['nombre'].setValue(alumno.nombre);
     this.alumnoForm.controls['apellidos'].setValue(alumno.apellidos);
     this.alumnoForm.controls['fecha_nacimiento'].setValue(alumno.fecha_nacimiento);
@@ -114,6 +143,8 @@ export class AlumnoComponent implements OnInit {
     this.alumnoForm.controls['carta_responsiva'].setValue(alumno.carta_responsiva);
     this.alumnoForm.controls['password'].setValue(alumno.password);
     this.alumnoForm.controls['email'].setValue(alumno.email);
+
+    $("#alumnoModal").modal("show");
   }
 
   imagenSelected(event){
@@ -133,4 +164,10 @@ export class AlumnoComponent implements OnInit {
   }
 
   get f() { return this.alumnoForm.controls; }
+
+  openModalAlumno(){
+    this.alumnoForm.reset();
+    this.modalTitle = "Registrar";
+    $("#alumnoModal").modal("show");
+  }
 }

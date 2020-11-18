@@ -9,7 +9,7 @@ import { Evento } from 'src/app/_models/evento';
 import { EventoService } from 'src/app/_services/evento.service'
 
 import Swal from 'sweetalert2';
-declare var event: any;
+declare var $: any;
 
 @Component({
   selector: 'app-evento',
