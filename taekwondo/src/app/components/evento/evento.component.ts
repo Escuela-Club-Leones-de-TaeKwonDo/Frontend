@@ -30,7 +30,7 @@ export class EventoComponent implements OnInit {
       id_evento: [''],
       nombre: ['', Validators.required],
       id_tipo_evento: ['', Validators.required],
-      descripcio: ['', Validators.required],
+      descripcion: ['', Validators.required],
       fecha_inicio: ['', Validators.required],
       fecha_fin: ['', Validators.required],
       costo: ['', Validators.required],
