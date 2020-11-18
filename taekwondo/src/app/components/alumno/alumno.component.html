@@ -84,7 +84,8 @@
 
         <label for="imagen">Fotografia*</label>
         <div class="custom-file">
-            <input type="file" formControlName="fotografia" accept="image/*" class="custom-file-input" (change)=imagenSelected($event)>
+            <input type="file" formControlName="fotografia" accept="image/*" class="custom-file-input"
+                (change)=imagenSelected($event)>
             <label class="custom-file-label" for="customFile">Selecciona una imagen...</label>
         </div>
 
@@ -92,9 +93,9 @@
             <label for="actividad">Actividad Marcial</label>
             <select formControlName="actividad_marcial" class="form-control" id="evento">
                 <option [ngValue]="undefined" hidden>Selecciona una actividad...</option>
-                <option value="1">Tae kwon Do</option>
-                <option value="2">Kick Boxing</option>
-                <option value="3">Acondicionamiento Físico</option>
+                <option value="TAEKWONDO">Tae kwon Do</option>
+                <option value="KICK_BOXING">Kick Boxing</option>
+                <option value="ACONDICIONAMIENTO_FISICO">Acondicionamiento Físico</option>
             </select>
         </div>
 
@@ -102,33 +103,37 @@
             <label for="grado">Grado Marcial</label>
             <select formControlName="grado" class="form-control" id="grado">
                 <option [ngValue]="undefined" hidden>Selecciona un grado...</option>
-                <option value="1">Cinta Amarilla</option>
-                <option value="2">Cinta Blanca</option>
-                <option value="3">Cinta Naranja</option>
+                <option value="Amarilla">Cinta Amarilla</option>
+                <option value="Blanca">Cinta Blanca</option>
+                <option value="Naranja">Cinta Naranja</option>
             </select>
         </div>
 
         <label for="imagen">Seguro Médico*</label>
         <div class="custom-file">
-            <input type="file" formControlName="seguro_medico" accept="*/*" class="custom-file-input" (change)=imagenSelected($event)>
+            <input type="file" formControlName="seguro_medico" accept="*/*" class="custom-file-input"
+                (change)=imagenSelected($event)>
             <label class="custom-file-label" for="customFile">Selecciona una archivo...</label>
         </div>
 
         <label for="imagen">Certificado Médico*</label>
         <div class="custom-file">
-            <input type="file" formControlName="certificado_medico" accept="*/*" class="custom-file-input" (change)=imagenSelected($event)>
+            <input type="file" formControlName="certificado_medico" accept="*/*" class="custom-file-input"
+                (change)=imagenSelected($event)>
             <label class="custom-file-label" for="customFile">Selecciona una archivo...</label>
         </div>
 
         <label for="imagen">Carta Responsiva*</label>
         <div class="custom-file">
-            <input type="file" formControlName="carta_responsiva" accept="*/*" class="custom-file-input" (change)=imagenSelected($event)>
+            <input type="file" formControlName="carta_responsiva" accept="*/*" class="custom-file-input"
+                (change)=imagenSelected($event)>
             <label class="custom-file-label" for="customFile">Selecciona una archivo...</label>
         </div>
 
         <div style="display: flex; justify-content: space-between; margin-top: 20px;">
             <input name="usuario" formControlName="email" type="email" placeholder="Correo" formControlName="email">
-            <input name="password" formControlName="password" type="password" placeholder="Contraseña" formControlName="password">
+            <input name="password" formControlName="password" type="password" placeholder="Contraseña"
+                formControlName="password">
         </div>
 
 

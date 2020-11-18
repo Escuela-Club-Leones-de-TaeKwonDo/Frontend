@@ -28,7 +28,7 @@ export class AlumnoComponent implements OnInit {
       apellidos: ['', Validators.required],
       fecha_nacimiento: ['', Validators.required],
       fotografia: [''],
-      actividad: ['', Validators.required],
+      actividad_marcial: ['', Validators.required],
       grado: ['', Validators.required],
       seguro_medico: [''],
       certificado_medico: [''],
@@ -107,7 +107,7 @@ export class AlumnoComponent implements OnInit {
     this.alumnoForm.controls['apellidos'].setValue(alumno.apellidos);
     this.alumnoForm.controls['fecha_nacimiento'].setValue(alumno.fecha_nacimiento);
     this.alumnoForm.controls['fotografia'].setValue(alumno.fotografia);
-    this.alumnoForm.controls['actividad'].setValue(alumno.actividad);
+    this.alumnoForm.controls['actividad_marcial'].setValue(alumno.actividad_marcial);
     this.alumnoForm.controls['grado'].setValue(alumno.grado);
     this.alumnoForm.controls['seguro_medico'].setValue(alumno.seguro_medico);
     this.alumnoForm.controls['certificado_medico'].setValue(alumno.certificado_medico);
