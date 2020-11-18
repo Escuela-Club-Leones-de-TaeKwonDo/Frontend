@@ -19,6 +19,4 @@ export class Evento {
                 this.enlace_facebook = enlace_facebook;
 
     }
-    
-    
 }

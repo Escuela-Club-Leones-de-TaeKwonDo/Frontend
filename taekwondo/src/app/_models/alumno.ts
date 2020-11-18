@@ -12,7 +12,7 @@ export class Alumno{
     password: String;
     email: String;
 
-    constructor(id, nombre, apellidos, fecha_nacimiento, fotografia, actividad_marcial, grado,
+        constructor(id, nombre, apellidos, fecha_nacimiento, fotografia, actividad_marcial, grado,
         seguro_medico, certificado_medico, carta_responsiva, password, email){
             this.id_alumno = id;
             this.nombre = nombre;
