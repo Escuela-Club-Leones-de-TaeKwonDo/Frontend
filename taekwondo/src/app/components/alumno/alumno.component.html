@@ -10,6 +10,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th class="text-center">ID</th>
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Apellidos</th>
                         <th class="text-center">Fecha de Nacimiento</th>
@@ -26,6 +27,7 @@
 
                 <tbody>
                     <tr *ngFor="let alumno of alumnos">
+                        <td class="text-center">{{ alumno.id }}</td>
                         <td class="text-center">{{ alumno.nombre }}</td>
                         <td class="text-center">{{ alumno.apellidos }}</td>
                         <td class="text-center">{{ alumno.fecha_nacimiento }}</td>
@@ -41,7 +43,7 @@
                             <div>
                                 <button (click)="updateAlumno(alumno)" type="button">Editar </button>
                                 &nbsp;&nbsp;
-                                <button (click)="deleteAlumno(alumno.id_alumno)" type="button">Eliminar </button>
+                                <button (click)="deleteAlumno(alumno.id)" type="button">Eliminar</button>
                             </div>
                         </td>
                     </tr>
