@@ -5,7 +5,7 @@ import { TipoEvento } from 'src/app/_models/tipo-evento';
 import { TipoEventoService } from 'src/app/_services/tipo-evento.service';
 
 import Swal from 'sweetalert2';
-declare var event: any;
+declare var $: any;
 
 @Component({
   selector: 'app-tipo-evento',
