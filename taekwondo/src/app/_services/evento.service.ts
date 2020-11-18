@@ -21,9 +21,9 @@ export class EventoService {
   }
 
   //Este aún no lo tenemos implementado en la API
-  getEventosAlumno(id_alumno: number){
-    return this.http.get<Evento[]>(this.API_URI+'/evento/alumno'+id_alumno);
-  }
+  //getEventosAdministrador(id_usuario: number){
+  //  return this.http.get<Evento[]>(this.API_URI+'/evento/alumno'+id_usuario);
+  //}
 
   createEvento(evento: Evento){
     console.log(evento);

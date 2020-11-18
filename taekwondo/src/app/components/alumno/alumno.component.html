@@ -122,6 +122,7 @@
         <div class="custom-file">
             <input type="file" formControlName="certificado_medico" accept="*/*" class="custom-file-input"
                 (change)=imagenSelected($event)>
+
             <label class="custom-file-label" for="customFile">Selecciona una archivo...</label>
         </div>
 
@@ -129,13 +130,16 @@
         <div class="custom-file">
             <input type="file" formControlName="carta_responsiva" accept="*/*" class="custom-file-input"
                 (change)=imagenSelected($event)>
+
             <label class="custom-file-label" for="customFile">Selecciona una archivo...</label>
         </div>
 
         <div style="display: flex; justify-content: space-between; margin-top: 20px;">
             <input name="usuario" formControlName="email" type="email" placeholder="Correo" formControlName="email">
+
             <input name="password" formControlName="password" type="password" placeholder="Contraseña"
                 formControlName="password">
+
         </div>
 
 

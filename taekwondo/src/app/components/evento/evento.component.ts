@@ -9,7 +9,7 @@ import { Evento } from 'src/app/_models/evento';
 import { EventoService } from 'src/app/_services/evento.service'
 
 import Swal from 'sweetalert2';
-declare var event: any;
+declare var $: any;
 
 @Component({
   selector: 'app-evento',
@@ -17,6 +17,8 @@ declare var event: any;
   styleUrls: ['./evento.component.css']
 })
 export class EventoComponent implements OnInit {
+  //tipoEvento: TipoEvento[] | any;
+  //tipoEventos
   eventos: Evento[] | any;
   evento: Evento | any;
   eventoForm: FormGroup;
@@ -52,7 +54,7 @@ export class EventoComponent implements OnInit {
       err => console.error(err)
     )
 
-    //this.eventos = [new Evento("EDC",1 ,"electronica","1970-08-25T00:00:00.000+00:00","1970-08-25T00:00:00.000+00:00", 50, "http:tony")]; 
+    this.eventos = [new Evento(1, "EDC",1 ,"electronica","1970-08-25","1970-08-25", 50, "http:tony")]; 
     
 
   }
@@ -89,6 +91,7 @@ export class EventoComponent implements OnInit {
 
     this.eventoService.createEvento(this.eventoForm.value).subscribe(
       res => {
+        $("#eventoModal").modal("hide");
         Swal.fire({       //confirmacion de la accion de crear evento se a registrado correctamente
           position: 'top-end',
           icon: 'success',

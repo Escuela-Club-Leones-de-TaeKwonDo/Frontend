@@ -13,7 +13,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th class="text-center">Nombre</th>
-                        <th class="text-center">ID del tipo de Evento</th>
+                        <th class="text-center">Tipo de Evento</th>
                         <th class="text-center">Descripción</th>
                         <th class="text-center">Fecha de Inicio</th>
                         <th class="text-center">Fecha de Finalización</th>
@@ -25,6 +25,7 @@
                 <tbody>
                     <tr *ngFor="let evento of eventos">
                         <td class="text-center">{{ evento.nombre }}</td>
+                       <!-- <tr *ngFor= "let "></tr> --> 
                         <td class="text-center">{{ evento.id_tipo_evento }}</td>
                         <td class="text-center">{{ evento.descripcion }}</td>
                         <td class="text-center">{{ evento.fecha_inicio }}</td>
@@ -69,7 +70,8 @@
 
 
                     <div class="form-group">
-                        <label for="id_tipo_evento">ID del tipo de Evento<span class="text-danger">*</span></label>
+                        <label for="id_tipo_evento">Tipo de Evento<span class="text-danger">*</span></label>
+
                         <input type="text" formControlName="id_tipo_evento" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.id_tipo_evento.errors }">
                         <div *ngIf="submitted && f.id_tipo_evento.errors" class="invalid-feedback">
                             <div *ngIf="f.id_tipo_evento.errors.required">El ID del tipo de evento es obligatorio</div>
