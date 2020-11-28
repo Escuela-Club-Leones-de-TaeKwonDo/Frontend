@@ -4,7 +4,7 @@ export class Alumno{
     apellidos: String;
     fecha_nacimiento: Date;
     fotografia: String;
-    actividad: String;
+    actividad_marcial: String;
     grado: String;
     seguro_medico: String;
     certificado_medico: String;
@@ -12,14 +12,14 @@ export class Alumno{
     password: String;
     email: String;
 
-    constructor(id, nombre, apellidos, fecha_nacimiento, fotografia, actividad, grado,
+    constructor(id, nombre, apellidos, fecha_nacimiento, fotografia, actividad_marcial, grado,
         seguro_medico, certificado_medico, carta_responsiva, password, email){
             this.id_alumno = id;
             this.nombre = nombre;
             this.apellidos = apellidos;
             this.fecha_nacimiento = fecha_nacimiento;
             this.fotografia = fotografia;
-            this.actividad = actividad;
+            this.actividad_marcial = actividad_marcial;
             this.grado = grado;
             this.seguro_medico = seguro_medico;
             this.certificado_medico = certificado_medico;

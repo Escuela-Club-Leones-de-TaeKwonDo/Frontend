@@ -45,7 +45,8 @@ export class AlumnoComponent implements OnInit {
 
   // Consultar lista de alumnos
   getAlumnos(){
-    this.alumnos = [];
+    this.alumnos = [];//[new Alumno(1, "Kevin", "Villegas", "11-10-1997", "Foto", "Tae Kwon Do", "Cinta Negra", "Seguro M", "Certificado M", "Carta R", "Pass", "Mail"),
+    //new Alumno(2, "Ricardo", "Salvador", "10-11-1997", "Fotografia", "Kick Boxing", "Cinta Morada", "Seguro", "Certificado", "Carta", "Password", "Email")];
     this.alumnoService.getAlumnos().subscribe(
       res => {
         this.alumnos = res;
@@ -93,6 +94,64 @@ export class AlumnoComponent implements OnInit {
     });
   }
 
+  imagenSelected(event){
+    this.imagen = <File> event.target.files[0];
+  }
+
+  convertImage(thiss): any {
+    let reader = new FileReader();
+    reader.readAsDataURL(thiss.imagen);
+    reader.onload = function () {
+      thiss.alumnoForm.controls['fotografia'].setValue(reader.result);
+
+      if(thiss.modalTitle == "Registrar"){
+        thiss.alumnoService.createAlumno(thiss.alumnoForm.value).subscribe(
+          res => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'El alumno ha sido registrado',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            $("#alumnoModal").modal("hide");
+            thiss.getAlumnos();
+            thiss.submitted = false;
+          },
+          err => console.error(err)
+        )
+      }else{
+        console.log(thiss.alumnoForm.value);
+        thiss.alumnoService.updateAlumno(thiss.alumnoForm.value).subscribe(
+          res => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'El alumno ha sido actualizado',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            $("#alumnoModal").modal("hide");
+            thiss.getAlumnos();
+            thiss.submitted = false;
+          },
+          err => {
+            console.error(err);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Error al conectar con el servidor'
+            })
+          }
+        )
+      }
+    };
+    
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+  }
+
   // Crear un alumno
   onSubmit(){
     this.submitted = true;
@@ -102,6 +161,9 @@ export class AlumnoComponent implements OnInit {
       return;
     }
 
+    this.convertImage(this);
+
+    /*
     if(this.modalTitle == "Registrar"){
       this.alumnoService.createAlumno(this.alumnoForm.value).subscribe(
         res => {
@@ -142,7 +204,7 @@ export class AlumnoComponent implements OnInit {
           })
         }
       )
-    }
+    }*/
   }
 
   // Actualizar un alumno
@@ -153,7 +215,7 @@ export class AlumnoComponent implements OnInit {
     this.alumnoForm.controls['apellidos'].setValue(alumno.apellidos);
     this.alumnoForm.controls['fecha_nacimiento'].setValue(alumno.fecha_nacimiento);
     this.alumnoForm.controls['fotografia'].setValue(alumno.fotografia);
-    this.alumnoForm.controls['actividad'].setValue(alumno.actividad);
+    this.alumnoForm.controls['actividad'].setValue(alumno.actividad_marcial);
     this.alumnoForm.controls['grado'].setValue(alumno.grado);
     this.alumnoForm.controls['seguro_medico'].setValue(alumno.seguro_medico);
     this.alumnoForm.controls['certificado_medico'].setValue(alumno.certificado_medico);
@@ -164,20 +226,80 @@ export class AlumnoComponent implements OnInit {
     $("#alumnoModal").modal("show");
   }
 
-  imagenSelected(event){
-    this.imagen = <File> event.target.files[0];
+  //Convertir un archivo pdf a base 64
+  convertFile(event){
+    var pdftobase64 = function(file,form){
+      Swal.fire({
+        title: 'Espera un momento!',
+        html: 'El archivo PDF se está cargando',
+        allowOutsideClick: false,
+        onBeforeOpen: () => {
+          Swal.showLoading()
+        },
+      });
+
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function(){
+        form.controls['carta_responsiva'].setValue(reader.result);
+        Swal.close();
+      };
+      reader.onerror = function(error){
+        console.log('Error: ',error);
+      };
+    }
+    pdftobase64(<File> event.target.files[0], this.alumnoForm);
   }
 
-  convertImage(thiss): any {
-    let reader = new FileReader();
-    reader.readAsDataURL(thiss.imagen);
-    reader.onload = function () {
-      thiss.alumnoForm.controls['fotografia'].setValue(reader.result);
-    };
-    
-    reader.onerror = function (error) {
-      console.log('Error: ', error);
-    };
+  showPDF(pdf_base64){
+    const linkSource = pdf_base64;
+    const downloadLink = document.createElement("a");
+    const fileName = "sample.pdf";
+
+    downloadLink.href = linkSource;
+    downloadLink.download = fileName;
+    downloadLink.click();
+
+    return downloadLink;
+  }
+
+  // Implementación para la parte del select de actividades
+  actividades = [
+    'Tae Kwon Do',
+    'Kick Boxing',
+    'Acondicionamiento Físico',
+  ]
+
+  cintas = []
+  cintasSeleccion = {
+    'Tae Kwon Do': ["10° KUP - Blanco","9° KUP - Naranja", "8° KUP - Amarillo","7° KUP - Amarillo Avanzado",
+      "6° KUP - Verde", "5° KUP - Verde Avanzado", "4° KUP - Azul", "3° KUP - Azul Avanzado", "2° KUP - Rojo",
+      "1° KUP - Rojinegro", "1° DAN o POOM - Negro"],
+    'Kick Boxing': ["Blanca","Amarilla","Naranja","Verde","Azul","Café - Café negra","Negra"],
+    'Acondicionamiento Físico': ["Nivel 1", "Nivel 2", "Nivel 3", "Nivel 4", "Nivel 5"],
+  }
+
+  cambioCinta(seleccion){
+    this.cintas = this.cintasSeleccion[seleccion]
+  }
+
+  // Implementación para mostrar el perfil
+  alumnoFecha: Date;
+  alumnoNombre: String;
+  alumnoCorreo: String;
+  alumnoActividad: String;
+  alumnoGrado: String;
+  alumnoImagen: String;
+
+  openModalPerfil(alumno: Alumno){
+    this.modalTitle = "Perfil";
+    this.alumnoNombre = alumno.nombre + " " + alumno.apellidos;
+    this.alumnoFecha = alumno.fecha_nacimiento;
+    this.alumnoCorreo = alumno.email;
+    this.alumnoActividad = alumno.actividad_marcial;
+    this.alumnoGrado = alumno.grado;
+    this.alumnoImagen = alumno.fotografia;
+    $("#alumnoPerfil").modal("show");
   }
 
   get f() { return this.alumnoForm.controls; }

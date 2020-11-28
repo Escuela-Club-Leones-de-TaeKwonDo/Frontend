@@ -20,7 +20,6 @@ export class AlumnoService {
   }
 
   createAlumno(alumno: Alumno){
-    console.log(alumno)
     return this.http.post(this.API_URI+'/alumno', alumno);
   }
 

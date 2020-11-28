@@ -15,7 +15,7 @@ import { ExamenComponent } from './components/examen/examen.component';
     AppComponent,
     AlumnoComponent,
     EventoComponent,
-    ExamenComponent
+    ExamenComponent,
   ],
   imports: [
     BrowserModule,
