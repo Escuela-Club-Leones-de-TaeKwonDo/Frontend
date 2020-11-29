@@ -45,8 +45,8 @@ export class AlumnoComponent implements OnInit {
 
   // Consultar lista de alumnos
   getAlumnos(){
-    this.alumnos = [];//[new Alumno(1, "Kevin", "Villegas", "11-10-1997", "Foto", "Tae Kwon Do", "Cinta Negra", "Seguro M", "Certificado M", "Carta R", "Pass", "Mail"),
-    //new Alumno(2, "Ricardo", "Salvador", "10-11-1997", "Fotografia", "Kick Boxing", "Cinta Morada", "Seguro", "Certificado", "Carta", "Password", "Email")];
+    this.alumnos = [new Alumno(1, "Kevin", "Villegas", "11-10-1997", "Foto", "Tae Kwon Do", "Cinta Negra", "Seguro M", "Certificado M", "Carta R", "Pass", "Mail"),
+                    new Alumno(2, "Ricardo", "Salvador", "10-11-1997", "Fotografia", "Kick Boxing", "Cinta Morada", "Seguro", "Certificado", "Carta", "Password", "Email")];
     this.alumnoService.getAlumnos().subscribe(
       res => {
         this.alumnos = res;
@@ -162,49 +162,6 @@ export class AlumnoComponent implements OnInit {
     }
 
     this.convertImage(this);
-
-    /*
-    if(this.modalTitle == "Registrar"){
-      this.alumnoService.createAlumno(this.alumnoForm.value).subscribe(
-        res => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'El alumno ha sido registrado',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          $("#alumnoModal").modal("hide");
-          this.getAlumnos();
-          this.submitted = false;
-        },
-        err => console.error(err)
-      )
-    }else{
-      console.log(this.alumnoForm.value);
-      this.alumnoService.updateAlumno(this.alumnoForm.value).subscribe(
-        res => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'El alumno ha sido actualizado',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          $("#alumnoModal").modal("hide");
-          this.getAlumnos();
-          this.submitted = false;
-        },
-        err => {
-          console.error(err);
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Error al conectar con el servidor'
-          })
-        }
-      )
-    }*/
   }
 
   // Actualizar un alumno
@@ -222,7 +179,7 @@ export class AlumnoComponent implements OnInit {
     this.alumnoForm.controls['carta_responsiva'].setValue(alumno.carta_responsiva);
     this.alumnoForm.controls['email'].setValue(alumno.email);
 
-    this.modalTitle = alumno.nombre + " " + alumno.apellidos + " (" + alumno.id_alumno + ")";
+    this.modalTitle = "Actualizar";
     $("#alumnoModal").modal("show");
   }
 
