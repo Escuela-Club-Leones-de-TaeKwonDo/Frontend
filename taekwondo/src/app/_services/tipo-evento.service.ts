@@ -16,8 +16,8 @@ export class TipoEventoService {
     return this.http.get(this.API_URI+'/tipo_evento');
   }
 
-  getTipoEvento(id_tipo_evento: number){
-    return this.http.get(this.API_URI+'/tipo_evento/'+id_tipo_evento);
+  getTipoEvento(id: number){
+    return this.http.get(this.API_URI+'/tipo_evento/'+id);
   }
 
   //Este aún no lo tenemos implementado en la API
@@ -32,10 +32,10 @@ export class TipoEventoService {
 
   updateTipoEvento(tipo_evento: TipoEvento){
     console.log(tipo_evento)
-    return this.http.put(this.API_URI+'/tipo_evento/'+tipo_evento.id_tipo_evento, tipo_evento);
+    return this.http.put(this.API_URI+'/tipo_evento/'+tipo_evento.id, tipo_evento);
   }
 
-  deleteTipoEvento(id_tipo_evento: number){
-    return this.http.delete(this.API_URI+'/tipo_evento/'+id_tipo_evento);
+  deleteTipoEvento(id: number){
+    return this.http.delete(this.API_URI+'/tipo_evento/'+id);
   }
 }

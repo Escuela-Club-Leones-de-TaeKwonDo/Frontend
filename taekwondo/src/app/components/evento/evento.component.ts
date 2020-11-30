@@ -29,7 +29,7 @@ export class EventoComponent implements OnInit {
     this.eventoForm = this.formBuilder.group({
       id_evento: [''],
       nombre: ['', Validators.required],
-      id_tipo_evento: ['', Validators.required],
+      id: ['', Validators.required],
       descripcio: ['', Validators.required],
       fecha_inicio: ['', Validators.required],
       fecha_fin: ['', Validators.required],
@@ -109,7 +109,7 @@ export class EventoComponent implements OnInit {
 
     this.eventoForm.controls['id_evento'].setValue(evento.id_evento);
     this.eventoForm.controls['nombre'].setValue(evento.nombre);
-    this.eventoForm.controls['id_tipo_evento'].setValue(evento.id_tipo_evento);
+    this.eventoForm.controls['id'].setValue(evento.id);
     this.eventoForm.controls['descripcion'].setValue(evento.descripcion);
     this.eventoForm.controls['fecha_inicio'].setValue(evento.fecha_inicio);
     this.eventoForm.controls['fecha_fin'].setValue(evento.fecha_fin);

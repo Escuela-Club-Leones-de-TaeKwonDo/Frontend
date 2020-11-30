@@ -25,7 +25,7 @@ export class TipoEventoComponent implements OnInit {
   ngOnInit(): void {
     //inicia el formulario vacio 
     this.tipoeventoForm = this.formBuilder.group({
-      id_tipo_evento: [''],
+      id: [''],
       nombre_tipo_evento: ['', Validators.required],
       descripcion: ['', Validators.required],
     });
@@ -122,7 +122,7 @@ export class TipoEventoComponent implements OnInit {
   updateTipoEvento(tipoevento: TipoEvento){
     this.submitted = true;
 
-    this.tipoeventoForm.controls['id_tipo_evento'].setValue(tipoevento.id_tipo_evento);
+    this.tipoeventoForm.controls['id'].setValue(tipoevento.id);
     this.tipoeventoForm.controls['nombre_tipo_evento'].setValue(tipoevento.nombre_tipo_evento);
     this.tipoeventoForm.controls['descripcion'].setValue(tipoevento.descripcion);
 

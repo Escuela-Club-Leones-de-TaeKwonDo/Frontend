@@ -3,7 +3,8 @@
 		<!-- Header  -->
 		<div class="card-header">
 			<h3><i class="fas fa-calendar-plus"></i>&nbsp;&nbsp;Tipos de Evento</h3>
-			<button style="float: right;" (click)="openModalEvento()" type="button" class="btn btn-outline-info btn-sm"> Agregar Tipo Evento <i class="fas fa-calendar-plus"></i></button>
+			<button style="float: right;" (click)="openModalEvento()" type="button" class="btn btn-outline-info btn-sm">
+				Agregar Tipo Evento <i class="fas fa-calendar-plus"></i></button>
 		</div>
 
 		<!-- Body  -->
@@ -23,9 +24,11 @@
 
 						<td>
 							<div>
-								<button (click)="updateTipoEvento(tipoevento)" type="button" class="btn btn-outline-primary">Editar <i class="fas fa-edit"></i></button>
+								<button (click)="updateTipoEvento(tipoevento)" type="button" class="btn btn-outline-primary">Editar <i
+										class="fas fa-edit"></i></button>
 								&nbsp;&nbsp;
-								<button (click)="deleteTipoEvento(tipoevento.id)" type="button" class="btn btn-outline-danger">Eliminar <i class="fas fa-trash"></i></button>
+								<button (click)="deleteTipoEvento(tipoevento.id)" type="button" class="btn btn-outline-danger">Eliminar
+									<i class="fas fa-trash"></i></button>
 							</div>
 						</td>
 					</tr>
@@ -42,7 +45,7 @@
 		<div class="modal-content">
 
 			<div class="modal-header">
-				<h4 class="modal-title">{{modalTitle}} Tipo  de Evento</h4>
+				<h4 class="modal-title">{{modalTitle}} Tipo de Evento</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 
@@ -50,11 +53,11 @@
 				<form [formGroup]="tipoeventoForm" (ngSubmit)="onSubmit()">
 
 					<div class="form-group">
-						<label for="id_tipo_evento">ID<span class="text-danger">*</span></label>
-						<input type="number" formControlName="id_tipo_evento" class="form-control"
-							[ngClass]="{ 'is-invalid': submitted && f.id_tipo_evento.errors }" disabled>
-						<div *ngIf="submitted && f.id_tipo_evento.errors" class="invalid-feedback">
-							<div *ngIf="f.id_tipo_evento.errors.required">El nombre del evento es obligatorio</div>
+						<label for="id">ID<span class="text-danger">*</span></label>
+						<input type="number" formControlName="id" class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.id.errors }" disabled>
+						<div *ngIf="submitted && f.id.errors" class="invalid-feedback">
+							<div *ngIf="f.id.errors.required">El nombre del evento es obligatorio</div>
 						</div>
 					</div>
 
