@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { EventoComponent } from './components/evento/evento.component';
 import { ExamenComponent } from './components/examen/examen.component';
+import { TipoEventoComponent } from './components/tipo-evento/tipo-evento.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ExamenComponent } from './components/examen/examen.component';
     AlumnoComponent,
     EventoComponent,
     ExamenComponent,
+    TipoEventoComponent,
   ],
   imports: [
     BrowserModule,

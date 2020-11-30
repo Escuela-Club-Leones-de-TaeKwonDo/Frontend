@@ -7,6 +7,4 @@ export class Evento {
     fecha_fin: Date;
     costo: number;
     enlace_facebook: String;
-    
-    
 }
