@@ -93,7 +93,6 @@ export class TipoEventoComponent implements OnInit {
         err => console.error(err)
       )
     }else{
-      console.log(this.tipoeventoForm.value);
       this.tipoeventoService.updateTipoEvento(this.tipoeventoForm.value).subscribe(
         res => {
           Swal.fire({

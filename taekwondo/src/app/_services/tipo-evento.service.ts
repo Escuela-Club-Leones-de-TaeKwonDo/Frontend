@@ -31,6 +31,7 @@ export class TipoEventoService {
   }
 
   updateTipoEvento(tipo_evento: TipoEvento){
+    console.log(tipo_evento)
     return this.http.put(this.API_URI+'/tipo_evento/'+tipo_evento.id_tipo_evento, tipo_evento);
   }
 

@@ -48,6 +48,16 @@
 
 			<div class="modal-body">
 				<form [formGroup]="tipoeventoForm" (ngSubmit)="onSubmit()">
+
+					<div class="form-group">
+						<label for="id_tipo_evento">ID<span class="text-danger">*</span></label>
+						<input type="number" formControlName="id_tipo_evento" class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.id_tipo_evento.errors }" disabled>
+						<div *ngIf="submitted && f.id_tipo_evento.errors" class="invalid-feedback">
+							<div *ngIf="f.id_tipo_evento.errors.required">El nombre del evento es obligatorio</div>
+						</div>
+					</div>
+
 					<div class="form-group">
 						<label for="nombre_tipo_evento">Nombre<span class="text-danger">*</span></label>
 						<input type="text" formControlName="nombre_tipo_evento" class="form-control"
