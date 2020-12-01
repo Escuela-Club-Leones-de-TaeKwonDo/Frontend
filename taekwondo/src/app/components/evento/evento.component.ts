@@ -121,7 +121,7 @@ export class EventoComponent implements OnInit {
         err => console.error(err)
       )
     }else{
-      /*this.eventoService.updateEvento(this.eventoForm.value, this.eventoForm.controls['id'].get(), this.tipoEventoSeleccionado).subscribe(
+      this.eventoService.updateEvento(this.eventoForm.value, this.idActualizar, this.tipoEventoSeleccionado).subscribe(
         res => {
           Swal.fire({       //confirmacion de la accion de crear evento se a registrado correctamente
             position: 'top-end',
@@ -142,13 +142,16 @@ export class EventoComponent implements OnInit {
             text: 'Error al conectar con el servidor'
           })
         }
-      )*/
+      )
     }
   }
 
+  idActualizar: number;
   // Actualizar un evento
   updateEvento(evento: Evento){
     this.submitted = true;
+
+    this.idActualizar = evento.id;
 
     this.eventoForm.controls['id'].setValue(evento.id);
     this.eventoForm.controls['nombre'].setValue(evento.nombre);
