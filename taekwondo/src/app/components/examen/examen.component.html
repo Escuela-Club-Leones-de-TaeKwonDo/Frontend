@@ -1,1 +1,134 @@
-<p>examen works!</p>
+<div class="container-fluid">
+    <div class="card mb-3">
+
+        <!-- Header -->
+        <div class="card-header">
+            <h3><i class="fas fa-newspaper"></i>&nbsp;&nbsp;Examen</h3>
+            <button style="float: right;" (click)="openModalExamen()" type="button" class="btn btn-outline-info btn-sm"> Agregar examen <i class="fas fa-newspaper"></i></button>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Tipo de Examen</th>
+                        <th class="text-center">Fecha</th>
+                        <th class="text-center">Horario</th>
+                        <th class="text-center">Costo</th>
+                        <th class="text-center">Enlace de Facebook</th>
+                        <th class="text-center">Solicitud</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let examen of examenes">
+                        <td class="text-center">{{ examen.nombre }}</td>
+                        <td class="text-center">{{ examen.tipo_examen }}</td>
+                        <td class="text-center">{{ examen.fecha | date : 'dd/MM/yyyy' : 'UTC' }}</td>
+                        <td class="text-center">{{ examen.horario }}</td>
+                        <td class="text-center">{{ examen.costo | currency : 'USD' }}</td>
+                        <td class="text-center"><a href="{{ examen.enlace_facebook }}">{{ examen.nombre }}</a></td>
+                        <td class="text-center"><button (click)="showPDF(examen.solicitud_examen)" type="button" class="btn btn-link"><i class="fas fa-book-reader"></i>&nbsp;&nbsp;Solicitud</button></td>
+                        <td>
+                            <div>
+                                <button (click)="updateExamen(examen)" type="button" class="btn btn-outline-primary">Editar <i class="fas fa-edit"></i></button>
+                                &nbsp;&nbsp;
+                                <button (click)="deleteExamen(examen.id)" type="button" class="btn btn-outline-danger">Eliminar <i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<div class="modal" id="examenModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">{{modalTitle}} Examen</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="examenForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="nombre">Nombre<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }"/>
+                        <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                            <div *ngIf="f.nombre.errors.required">El nombre del examen es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo_examen">Tipo de examen<span class="text-danger">*</span></label>
+                        <select class="custom-select" formControlName="tipo_examen" [ngClass]="{ 'is-invalid': submitted && f.tipo_examen.errors }">
+                            <option disabled selected>Selecciona un tipo de examen</option>
+                            <option *ngFor="let tipo of tipoExamen" [value]='tipo'>{{ tipo }}</option>
+                        </select>
+                        <div *ngIf="submitted && f.tipo_examen.errors" class="invalid-feedback">
+                            <div *ngIf="f.tipo_examen.errors.required">El nombre del examen es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fecha">Fecha <span class="text-danger">*</span></label>
+                        <input type="date" formControlName="fecha" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fecha.errors }">
+                        <div *ngIf="submitted && f.fecha.errors" class="invalid-feedback">
+                            <div *ngIf="f.fecha.errors.required">La fecha es obligatoria</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="costo">Costo<span class="text-danger">*</span></label>
+                        <input type="number" formControlName="costo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.costo.errors }" />
+                        <div *ngIf="submitted && f.costo.errors" class="invalid-feedback">
+                            <div *ngIf="f.costo.errors.required">El costo del examen es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="horario">Horario<span class="text-danger">*</span></label>
+                        <input type="time" formControlName="horario" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.horario.errors }">
+                        <div *ngIf="submitted && f.horario.errors" class="invalid-feedback">
+                            <div *ngIf="f.horario.errors.required">La fecha es obligatoria</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="enlace_facebook">Enlace de Facebook<span class="text-danger">*</span></label>
+                        <input type="URI" formControlName="enlace_facebook" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.enlace_facebook.errors }" />
+                        <div *ngIf="submitted && f.enlace_facebook.errors" class="invalid-feedback">
+                            <div *ngIf="f.enlace_facebook.errors.required">El enlace del evento en Facebook es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="solicitud_examen">Solicitud de examen<span class="text-danger">*</span></label>
+                        <div class="custom-file">
+                            <input type="file" accept=".pdf" class="custom-file-input" (change)=convertFile($event)>
+                            <label class="custom-file-label" for="customFile">Selecciona un archivo pdf...</label>
+                            <div *ngIf="submitted && f.solicitud_examen.errors" class="invalid-feedback">
+                                <div *ngIf="f.solicitud_examen.errors.required">Sube tu solicitud de examen en archivo .pdf</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-right"><span class="text-danger">*</span> Campos requeridos</p>
+                    <div>
+                        <button class="btn btn-outline-success btn-block">Guardar <i class="fas fa-save"></i></button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

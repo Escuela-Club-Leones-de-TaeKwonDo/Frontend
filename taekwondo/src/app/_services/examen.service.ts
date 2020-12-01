@@ -12,7 +12,7 @@ export class ExamenService {
   constructor(private http: HttpClient) { }
 
   getExamenes(){
-    return this.http.get<Examen[]>(this.API_URI+'/examen');
+    return this.http.get(this.API_URI+'/examen');
   }
 
   getExamen(id: number){
@@ -23,8 +23,8 @@ export class ExamenService {
     return this.http.post(this.API_URI+'/examen', examen);
   }
 
-  updateExamen(examen: Examen, id: number){
-    return this.http.put(this.API_URI+'/examen/'+id,examen);
+  updateExamen(examen: Examen){
+    return this.http.put(this.API_URI+'/examen/'+examen.id,examen);
   }
 
   deleteExamen(id: number){
