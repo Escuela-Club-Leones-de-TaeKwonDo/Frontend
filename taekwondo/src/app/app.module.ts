@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { EventoComponent } from './components/evento/evento.component';
 
 import { TipoEventoComponent } from './components/tipo-evento/tipo-evento.component';
+import { LoginComponent } from './components/autenticacion/login/login.component';
+import { MainComponent } from './components/main/main.component';
 
 // import { ExamenComponent } from './components/examen/examen.component';
 
@@ -19,7 +21,9 @@ import { TipoEventoComponent } from './components/tipo-evento/tipo-evento.compon
     AppComponent,
     AlumnoComponent,
     EventoComponent,
-    TipoEventoComponent
+    TipoEventoComponent,
+    LoginComponent,
+    MainComponent
     // ExamenComponent
   ],
   imports: [

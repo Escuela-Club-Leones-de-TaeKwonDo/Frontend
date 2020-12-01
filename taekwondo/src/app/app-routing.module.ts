@@ -3,10 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { AlumnoComponent } from './components/alumno/alumno.component';
 import { EventoComponent } from './components/evento/evento.component';
 import { TipoEventoComponent } from './components/tipo-evento/tipo-evento.component';
+import { MainComponent }  from './components/main/main.component';
+import { LoginComponent }  from './components/autenticacion/login/login.component';
 
 const routes: Routes = [
   //NOTA: cambiar este componente cuando tengamos la página de inicio.
-  { path: '', component: AlumnoComponent },
+  { path: '', component: MainComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'alumno', component: AlumnoComponent },
   { path: 'evento', component: EventoComponent},
   { path: 'tipo-evento', component: TipoEventoComponent},
