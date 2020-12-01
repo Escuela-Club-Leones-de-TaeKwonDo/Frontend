@@ -14,7 +14,8 @@ declare var $: any;
 })
 
 export class TipoEventoComponent implements OnInit {
-    tipoeventos: TipoEvento[] | any;
+  
+  tipoeventos: TipoEvento[] | any;
   tipoevento: TipoEvento | any;
   tipoeventoForm: FormGroup;
   submitted = false;
@@ -25,7 +26,7 @@ export class TipoEventoComponent implements OnInit {
   ngOnInit(): void {
     //inicia el formulario vacio 
     this.tipoeventoForm = this.formBuilder.group({
-      id_tipo_evento: [''],
+      id: [''],
       nombre_tipo_evento: ['', Validators.required],
       descripcion: ['', Validators.required],
     });
@@ -35,7 +36,7 @@ export class TipoEventoComponent implements OnInit {
 
   // Consultar lista de eventos
   getTipoEventos(){
-    this.tipoeventos = [new TipoEvento(1,"Premiación", "Premiación de torneo"), new TipoEvento(2,"Avance de título", "Avance en los títulos")];
+    this.tipoeventos = [];//[new TipoEvento(1,"Premiación", "Premiación de torneo"), new TipoEvento(2,"Avance de título", "Avance en los títulos")];
     this.tipoeventoService.getTipoEventos().subscribe(
       res => {
         this.tipoeventos = res;
@@ -79,7 +80,7 @@ export class TipoEventoComponent implements OnInit {
     if(this.modalTitle == "Registrar"){
       this.tipoeventoService.createTipoEvento(this.tipoeventoForm.value).subscribe(
         res => {
-          Swal.fire({       //confirmacion de la accion de crear evento se a registrado correctamente
+          Swal.fire({
             position: 'top-end',
             icon: 'success',
             title: 'El tipo de evento ha sido creado',
@@ -93,7 +94,6 @@ export class TipoEventoComponent implements OnInit {
         err => console.error(err)
       )
     }else{
-      console.log(this.tipoeventoForm.value);
       this.tipoeventoService.updateTipoEvento(this.tipoeventoForm.value).subscribe(
         res => {
           Swal.fire({
@@ -123,7 +123,7 @@ export class TipoEventoComponent implements OnInit {
   updateTipoEvento(tipoevento: TipoEvento){
     this.submitted = true;
 
-    this.tipoeventoForm.controls['id_tipo_evento'].setValue(tipoevento.id_tipo_evento);
+    this.tipoeventoForm.controls['id'].setValue(tipoevento.id);
     this.tipoeventoForm.controls['nombre_tipo_evento'].setValue(tipoevento.nombre_tipo_evento);
     this.tipoeventoForm.controls['descripcion'].setValue(tipoevento.descripcion);
 

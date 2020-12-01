@@ -1,19 +1,29 @@
-<div class= "container-fluid">
-    <div class= "card mb-3">      
+<div class="container-fluid">
+    <div class="card mb-3">
         <!-- Header  -->
         <div class="card-header">
-            <h3><i class="fa fa-calendar-o"></i>&nbsp;&nbsp;Eventos</h3>
-            <button style="float: right;" (click)="openModalEvento()" type="button" class="btn btn-info btn-sm"> Agregar Evento <i class="fa fa-calendar-o" aria-hidden="true"></i>
-            </button>
+            <h3><i class="fas fa-calendar-alt"></i>&nbsp;&nbsp;Eventos</h3>
+            <button style="float: right;" (click)="openModalEvento()" type="button" class="btn btn-outline-info btn-sm"> Agregar Evento <i class="far fa-calendar-plus"></i></button>
         </div>
         
+        <br>
+        <div class="form-group row text-center">
+            <label for="colFormLabel" class="col-sm-2 col-form-label">Tipo de Evento:</label>
+            <div class="col-sm-6">
+                <select class="form-control" [(ngModel)]="tipoEventoSeleccionado" (change)="getEventoTipoEvento(tipoEventoSeleccionado)" name="tipoEventoSeleccionado" id="tipoEventoSeleccionado">
+                    <option [ngValue]="undefined" hidden>Selecciona un tipo de evento...</option>
+                    <option *ngFor="let tipo of tipoEventos" [ngValue]="tipo.id">{{tipo.nombre_tipo_evento}}</option>
+                    <option type="submit" routerLink="/tipo-evento">Administrar tipo de eventos</option>
+                </select>
+            </div>
+        </div>
+
         <!-- Body  -->
         <div class="card-body">
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
                         <th class="text-center">Nombre</th>
-                        <th class="text-center">ID del tipo de Evento</th>
                         <th class="text-center">Descripción</th>
                         <th class="text-center">Fecha de Inicio</th>
                         <th class="text-center">Fecha de Finalización</th>
@@ -25,7 +35,6 @@
                 <tbody>
                     <tr *ngFor="let evento of eventos">
                         <td class="text-center">{{ evento.nombre }}</td>
-                        <td class="text-center">{{ evento.id_tipo_evento }}</td>
                         <td class="text-center">{{ evento.descripcion }}</td>
                         <td class="text-center">{{ evento.fecha_inicio }}</td>
                         <td class="text-center">{{ evento.fecha_fin }}</td>
@@ -34,15 +43,16 @@
 
                         <td>
                             <div>
-                                <button (click)="updateEvento(evento)" type="button" class="btn btn-primary">Editar <i class="fas fa-edit"></i></button>
+                                <button (click)="updateEvento(evento)" type="button" class="btn btn-outline-primary">Editar <i class="fas fa-edit"></i></button>
                                 &nbsp;&nbsp;
-                                <button (click)="deleteEvento(evento.id)" type="button" class="btn btn-danger">Eliminar <i class="fas fa-trash"></i></button>
+                                <button (click)="deleteEvento(evento.id)" type="button" class="btn btn-outline-danger">Eliminar <i class="fas fa-trash"></i></button>
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
     </div>
 </div>
 
@@ -53,7 +63,7 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h4 class="modal-title">Agregar Evento</h4>
+                <h4 class="modal-title"><i class="far fa-calendar-plus"></i>&nbsp;&nbsp;Agregar Evento</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -67,15 +77,6 @@
                         </div>
                     </div>
 
-
-                    <div class="form-group">
-                        <label for="id_tipo_evento">ID del tipo de Evento<span class="text-danger">*</span></label>
-                        <input type="text" formControlName="id_tipo_evento" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.id_tipo_evento.errors }">
-                        <div *ngIf="submitted && f.id_tipo_evento.errors" class="invalid-feedback">
-                            <div *ngIf="f.id_tipo_evento.errors.required">El ID del tipo de evento es obligatorio</div>
-                        </div>
-                   </div>
-
                     <div class="form-group">
                         <label for="descripcion">Descripción<span class="text-danger">*</span></label>
                         <input type="text" formControlName="descripcion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }">
@@ -84,14 +85,23 @@
                         </div>
                     </div>
 
-
-            
                     <div class="form-group">
-                       <label for="fecha_inicio">Fecha de Inicio<span class="text-danger">*</span></label>
-                       <input type="date" formControlName="fecha_inicio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fecha_inicio.errors }" />
-                       <div *ngIf="submitted && f.fecha_inicio.errors" class="invalid-feedback">
-                          <div *ngIf="f.fecha_inicio.errors.required">La fecha de inicio del evento es obligatorio</div>
-                       </div>
+                        <label for="id_tipo_evento">Tipo de Evento<span class="text-danger">*</span></label>
+                        <select class="form-control" formControlName="id_tipo_evento" [(ngModel)]="tipoEventoSeleccionado" (change)="getEventoTipoEvento(tipoEventoSeleccionado)" name="tipoEventoSeleccionado" id="tipoEventoSeleccionado" [ngClass]="{ 'is-invalid': submitted && f.id_tipo_evento.errors }">
+                            <option [ngValue]="undefined" hidden>Selecciona un tipo de evento...</option>
+                            <option *ngFor="let tipo of tipoEventos" [ngValue]="tipo.id">{{tipo.nombre_tipo_evento}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.id_tipo_evento.errors" class="invalid-feedback">
+                            <div *ngIf="f.id_tipo_evento.errors.required">El tipo de evento es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fecha_inicio">Fecha de Inicio<span class="text-danger">*</span></label>
+                        <input type="date" formControlName="fecha_inicio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fecha_inicio.errors }" />
+                        <div *ngIf="submitted && f.fecha_inicio.errors" class="invalid-feedback">
+                            <div *ngIf="f.fecha_inicio.errors.required">La fecha de inicio del evento es obligatorio</div>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -101,7 +111,7 @@
                             <div *ngIf="f.fecha_fin.errors.required">La fecha de finalizacion del evento es obligatorio</div>
                         </div>
                     </div>
-            
+
                     <div class="form-group">
                         <label for="costo">Costo<span class="text-danger">*</span></label>
                         <input type="text" formControlName="costo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.costo.errors }" />
@@ -109,7 +119,7 @@
                             <div *ngIf="f.costo.errors.required">El costo del evento es obligatorio</div>
                         </div>
                     </div>
-            
+
                     <div class="form-group">
                         <label for="enlace_facebook">Enlace de Facebook<span class="text-danger">*</span></label>
                         <input type="URI" formControlName="enlace_facebook" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.enlace_facebook.errors }" />
@@ -120,15 +130,15 @@
 
                     <p class="text-right"><span class="text-danger">*</span> Campos requeridos</p>
                     <div>
-                        <button class="btn btn-success btn-block">Guardar</button>
+                        <button class="btn btn-outline-success btn-block">Guardar</button>
                     </div>
                 </form>
-          </div>  
+            </div>
 
-          <div class="modal-footer">
-             <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-          </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
 
-       </div>
+        </div>
     </div>
 </div>
