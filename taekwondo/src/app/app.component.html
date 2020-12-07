@@ -1,31 +1,90 @@
-<!-- Barra de navegacion  -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="/">{{texto_navegacion}}</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/">Home
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/">Eventos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/">Examenes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<!-- Barra de navegacion -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+	<div class="container">
+		<a class="navbar-brand js-scroll-trigger" href="#">{{texto_navegacion}}</a>
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+			Menu
+			<i class="fas fa-bars ml-1"></i>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav text-uppercase ml-auto">
+				<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">Home</a></li>
+				<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">Eventos</a></li>
+				<li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">Examenes</a></li>
+				<li class="nav-item"><a class="nav-link js-scroll-trigger" routerLink="/login">Iniciar Sesión</a></li>
+				<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
 <!-- Enrutamiento  -->
 <router-outlet></router-outlet>
+
+<!-- Abput -->
+<section class="page-section" id="about">
+	<div class="container">
+		<div class="text-center">
+			<h2 class="section-heading text-uppercase">About</h2>
+			<h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+		</div>
+		<ul class="timeline">
+			<li>
+				<div class="timeline-image"><img class="rounded-circle img-fluid" src="../assets/1.jpg" alt="" /></div>
+				<div class="timeline-panel">
+					<div class="timeline-heading">
+						<h4>2009-2011</h4>
+						<h4 class="subheading">Our Humble Beginnings</h4>
+					</div>
+					<div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+				</div>
+			</li>
+			<li class="timeline-inverted">
+				<div class="timeline-image"><img class="rounded-circle img-fluid" src="../assets/2.jpg" alt="" /></div>
+				<div class="timeline-panel">
+					<div class="timeline-heading">
+						<h4>March 2011</h4>
+						<h4 class="subheading">An Agency is Born</h4>
+					</div>
+					<div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+				</div>
+			</li>
+			<li>
+				<div class="timeline-image"><img class="rounded-circle img-fluid" src="../assets/3.jpg" alt="" /></div>
+				<div class="timeline-panel">
+					<div class="timeline-heading">
+						<h4>December 2012</h4>
+						<h4 class="subheading">Transition to Full Service</h4>
+					</div>
+					<div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+				</div>
+			</li>
+			<li class="timeline-inverted">
+				<div class="timeline-image"><img class="rounded-circle img-fluid" src="../assets/4.jpg" alt="" /></div>
+				<div class="timeline-panel">
+					<div class="timeline-heading">
+						<h4>July 2014</h4>
+						<h4 class="subheading">Phase Two Expansion</h4>
+					</div>
+					<div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+				</div>
+			</li>
+			<li class="timeline-inverted">
+				<div class="timeline-image">
+					<h4>
+						Be Part
+						<br />
+						Of Our
+						<br />
+						Story!
+					</h4>
+				</div>
+			</li>
+		</ul>
+	</div>
+</section>
+<!-- About -->
+
 <!-- Pie de pagina  -->
 <footer class="page-footer font-small special-color-light pt-4">
 
@@ -33,33 +92,60 @@
 	<div class="container">
 
 		<!-- Social buttons -->
-		<ul class="list-unstyled list-inline text-center">
-			<li class="list-inline-item">
-				<a class="btn-floating btn-fb mx-1">
-					<i class="fab fa-facebook-f"> </i>
-				</a>
-			</li>
-			<li class="list-inline-item">
-				<a class="btn-floating btn-tw mx-1">
-					<i class="fab fa-twitter"> </i>
-				</a>
-			</li>
-			<li class="list-inline-item">
-				<a class="btn-floating btn-gplus mx-1">
-					<i class="fab fa-google-plus-g"> </i>
-				</a>
-			</li>
-			<li class="list-inline-item">
-				<a class="btn-floating btn-li mx-1">
-					<i class="fab fa-linkedin-in"> </i>
-				</a>
-			</li>
-			<li class="list-inline-item">
-				<a class="btn-floating btn-dribbble mx-1">
-					<i class="fab fa-dribbble"> </i>
-				</a>
-			</li>
-		</ul>
+		<div class="row">
+			<div class="col-lg-8 col-md-10 mx-auto">
+			  <ul class="list-inline text-center">
+				<li class="list-inline-item">
+				  <a href="#">
+					<span class="fa-stack fa-lg">
+					  <i class="fas fa-circle fa-stack-2x"></i>
+					  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+					</span>
+				  </a>
+				</li>
+				<li class="list-inline-item">
+				  <a href="#">
+					<span class="fa-stack fa-lg">
+					  <i class="fas fa-circle fa-stack-2x"></i>
+					  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+					</span>
+				  </a>
+				</li>
+				<li class="list-inline-item">
+					<a href="#">
+						<span class="fa-stack fa-lg">
+							<i class="fas fa-circle fa-stack-2x"></i>
+							<i class="fab fa-google-plus-g fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				</li>
+				<li class="list-inline-item">
+					<a href="#">
+						<span class="fa-stack fa-lg">
+							<i class="fas fa-circle fa-stack-2x"></i>
+							<i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				</li>
+				<li class="list-inline-item">
+					<a href="#">
+						<span class="fa-stack fa-lg">
+							<i class="fas fa-circle fa-stack-2x"></i>
+							<i class="fab fa-dribbble fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				</li>
+				<li class="list-inline-item">
+				  <a href="#">
+					<span class="fa-stack fa-lg">
+					  <i class="fas fa-circle fa-stack-2x"></i>
+					  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+					</span>
+				  </a>
+				</li>
+			  </ul>
+			</div>
+		  </div>
 		<!-- Social buttons -->
 
 	</div>
