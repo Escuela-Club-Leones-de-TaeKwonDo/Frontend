@@ -154,6 +154,7 @@ export class AlumnoComponent implements OnInit {
 
   // Crear un alumno
   onSubmit(){
+    console.log('hola prueba');
     this.submitted = true;
 
     if(this.alumnoForm.invalid){
@@ -163,6 +164,8 @@ export class AlumnoComponent implements OnInit {
 
     this.convertImage(this);
   }
+
+  
 
   // Actualizar un alumno
   updateAlumno(alumno: Alumno){

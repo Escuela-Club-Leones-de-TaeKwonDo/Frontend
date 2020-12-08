@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Examen } from 'src/app/_models/examen';
 import { ExamenService } from 'src/app/_services/examen.service';
-
+import { LoginService } from 'src/app/_services/login.service';
 import Swal from 'sweetalert2';
 
-declare var $: any;
+ declare var $: any;
 
 @Component({
   selector: 'app-examen',
@@ -20,7 +20,7 @@ export class ExamenComponent implements OnInit {
   submitted = false;
   modalTitle: String;
 
-  constructor(private examenService: ExamenService, private formBuilder: FormBuilder) { }
+  constructor(private examenService: ExamenService, private loginService: LoginService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.examenForm = this.formBuilder.group({
