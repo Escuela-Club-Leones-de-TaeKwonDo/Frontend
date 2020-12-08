@@ -87,7 +87,7 @@ export class ExamenComponent implements OnInit {
     });
   }
 
-  //Crear un alumno
+  //Crear un examen
   onSubmit(){
     this.submitted = true;
 
@@ -132,7 +132,7 @@ export class ExamenComponent implements OnInit {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Error al conectar con el seervidor'
+            text: 'Error al conectar con el servidor'
           })
         }
       )

@@ -154,15 +154,54 @@ export class AlumnoComponent implements OnInit {
 
   // Crear un alumno
   onSubmit(){
-    console.log('hola prueba');
     this.submitted = true;
 
     if(this.alumnoForm.invalid){
-      console.log('Formulario inválido');
+      console.log("Formulario inválido");
       return;
     }
 
-    this.convertImage(this);
+    if(this.modalTitle == "Registrar"){
+      this.alumnoService.createAlumno(this.alumnoForm.value).subscribe(
+        res => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'El alumno ha sido registrado',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          $("#alumnoModal").modal("hide");
+          this.getAlumnos();
+          this.submitted = false;
+        },
+        err => console.error(err)
+      )
+    }else{
+      console.log(this.alumnoForm.value);
+      this.alumnoService.updateAlumno(this.alumnoForm.value).subscribe(
+        res => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'El alumno ha sido actualizado',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          $("#alumnoModal").modal("hide");
+          this.getAlumnos();
+          this.submitted = false;
+        },
+        err => {
+          console.error(err);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Error al conectar con el servidor'
+          })
+        }
+      )
+    }
   }
 
   
