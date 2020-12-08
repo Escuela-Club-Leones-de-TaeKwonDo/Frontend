@@ -3,33 +3,18 @@
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm">
-				<div class="col-xl-9 mx-auto">
-					<br><br>
-					<h1 class="mb-8 text-bold">Club Leones</h1>
-					<li><h3 class="text-left text-bold">Tae Kwon Do</h3></li>
-					<li><h3 class="text-left text-bold">Kick Boxing</h3></li>
-					<li><h3 class="text-left text-bold">Acondicionamiento Físico</h3></li>
-				</div>
+			<div class="col-xl-9 mx-auto">
+				<h1 class="mb-8">Club Leones</h1>
+				<li><h3 class="text-bold">Tae Kwon Do</h3></li>
+				<li><h3 class="text-bold">Kick Boxing</h3></li>
+				<li><h3 class="text-bold">Acondicionamiento Físico</h3></li>
 			</div>
-			<div class="col-sm">
-				<div class="login-container" >
-					<div id="output"></div>
-					<div class="avatar"></div>
-					<div class="form-box">
-						<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-							<input name="usuario" type="email" placeholder="Email" formControlName="email">
-							<input name="password" type="password" placeholder="Contraseña" formControlName="password">
-							<button type="submit" class="btn btn-block btn-outline-info" routerLink="/login">Iniciar Sesión</button>
-							<br>
-							<div>
-								<p>¿Aún no tienes una cuenta?</p>
-								<button type="submit" class="btn btn-block btn-outline-info" routerLink="/">Registrate</button> 
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
+			<div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+            	<button type="submit" class="btn btn-block btn-lg btn-primary" routerLink="/login">Iniciar Sesión</button>
+				<br>
+				<h3>¿Aún no tienes una cuenta?</h3>
+            	<button type="submit" class="btn btn-block btn-lg btn-primary" routerLink="/registro">Registrate</button>
+        	</div>
 		</div>
 	</div>
 </header>
@@ -112,7 +97,7 @@
 						<div class="portfolio-hover">
 							<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
 						</div>
-						<img class="img-fluid" src="../../../assets/img/02-thumbnail.jpg" alt="" />
+						<img class="img-fluid" src="../../../assets/img/Fondo3.jpg" alt="" />
 					</a>
 					<div class="portfolio-caption">
 						<div class="portfolio-caption-heading">Reglamento Compentencias</div>
@@ -132,7 +117,7 @@
 			<h3 class="section-subheading text-muted">Conoce un poco mas.</h3>
 		</div>
 		<ul class="timeline">
-			<li class="timeline-inverted">
+			<li>
 				<div class="timeline-image"><img class="rounded-circle img-fluid" src="../../../assets/img/2.jpg" alt="" /></div>
 				<div class="timeline-panel">
 					<div class="timeline-heading">
@@ -144,7 +129,7 @@
 					</p></div>
 				</div>
 			</li>
-			<li>
+			<li class="timeline-inverted">
 				<div class="timeline-image"><img class="rounded-circle img-fluid" src="../../../assets/img/1.jpg" alt="" /></div>
 				<div class="timeline-panel">
 					<div class="timeline-heading">
