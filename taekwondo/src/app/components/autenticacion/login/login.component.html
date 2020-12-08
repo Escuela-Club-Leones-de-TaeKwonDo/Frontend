@@ -1,13 +1,11 @@
-<div class="container">
-    <div class="login-container">
-        <div id="output"></div>
-        <div class="avatar"></div>
-        <div class="form-box">
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <input name="usuario" type="email" placeholder="email" formControlName="email">
-                <input name="password" type="password" placeholder="Contraseña" formControlName="password">
-                <button>Ingresar</button>                
-            </form>
-        </div>
+<div class="login-container" >
+    <div id="output"></div>
+    <div class="avatar"></div>
+    <div class="form-box">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <input name="usuario" type="email" placeholder="Email" formControlName="email">
+            <input name="password" type="password" placeholder="Contraseña" formControlName="password">
+            <button type="submit" class="btn btn-block btn-outline-info" routerLink="/login">Iniciar Sesión</button>
+        </form>
     </div>
 </div>

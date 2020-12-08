@@ -3,18 +3,336 @@
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row">
-			<div class="login-container">
-				<div id="output"></div>
-				<div class="avatar"></div>
-				<div class="form-box">
-					<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-						<input name="usuario" type="email" placeholder="Email" formControlName="email">
-						<input name="password" type="password" placeholder="Contraseña" formControlName="password">
-						<button type="submit" class="btn btn-block btn-info" routerLink="/">Ingresar</button>
-						<button type="submit" class="btn btn-block btn-info" routerLink="/">Registrate</button> 
-					</form>
+			<div class="col-xl-9 mx-auto">
+				<h1 class="mb-8">Club Leones</h1>
+				<li><h3 class="text-bold">Tae Kwon Do</h3></li>
+				<li><h3 class="text-bold">Kick Boxing</h3></li>
+				<li><h3 class="text-bold">Acondicionamiento Físico</h3></li>
+			</div>
+			<div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+            	<button type="submit" class="btn btn-block btn-lg btn-primary" routerLink="/login">Iniciar Sesión</button>
+				<br>
+				<h3>¿Aún no tienes una cuenta?</h3>
+            	<button type="submit" class="btn btn-block btn-lg btn-primary" routerLink="/registro">Registrate</button>
+        	</div>
+		</div>
+	</div>
+</header>
+
+<!-- Misión, Visión y Valores -->
+<section class="page-section" id="services">
+	<div class="container">
+		<div class="text-center">
+			<h2 class="section-heading text-uppercase">Ética</h2>
+			<h3 class="section-subheading text-muted">Escuela Club Leones.</h3>
+		</div>
+		<div class="row text-center">
+			<div class="col-md-4">
+				<span class="fa-stack fa-4x">
+					<i class="fas fa-circle fa-stack-2x text-primary"></i>
+					<i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+				</span>
+				<h4 class="my-3">Misión</h4>
+				<p class="text-muted">Formar seres humanos integrales en un entorno globalizado a través de las
+					artes marciales con principios de disciplina, respeto, perseverancia,
+					autocontrol, cortesía y espíritu combativo. Desarrollando en nuestros
+					estudiantes capacidades para desempeñarse como líderes en sus campos
+					profesionales en cualquier lugar del mundo.
+				</p>
+			</div>
+			<div class="col-md-4">
+				<span class="fa-stack fa-4x">
+					<i class="fas fa-circle fa-stack-2x text-primary"></i>
+					<i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+				</span>
+				<h4 class="my-3">Visión</h4>
+				<p class="text-muted">Formar líderes para el futuro, profesionales destacados y caracterizados por 
+					su disciplina y perseverancia en sus áreas del conocimiento. Club Leones se proyecta como un centro de alto rendimiento 
+					a través de sus programas que permiten el intercambio cultural de nuestros estudiantes 
+					y el mejoramiento de sus habilidades, convirtiendo nuestra institución en una formadora de líderes para el futuro en sus 
+					especialidades y campos del conocimiento.
+				</p>
+			</div>
+			<div class="col-md-4">
+				<span class="fa-stack fa-4x">
+					<i class="fas fa-circle fa-stack-2x text-primary"></i>
+					<i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+				</span>
+				<h4 class="my-3">Valores</h4>
+				<p class="text-muted">Promover un espíritu de mutuas concesiones. Admitir y corregir los defectos propios, siendo
+					condescendiente con los de demás. Ser educado. Alentar un sentido humanitario y de justicia.
+					Comportarse de acuerdo a la situación. Respetar las posesiones de los demás. Prácticar la honestidad y sinceridad. 
+					Abstenerse de aceptar algún favor o soborno.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Misión, Visión y Valores -->
+
+<!-- Reglamentos -->
+<section class="page-section bg-light" id="portfolio">
+	<div class="container">
+		<div class="text-center">
+			<h2 class="section-heading text-uppercase">Reglamentos</h2>
+			<h3 class="section-subheading text-muted">Escuela Club Leones.</h3>
+		</div>
+		<div class="row">
+			<div class="col-sm">
+				<div class="portfolio-item">
+					<a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+						<div class="portfolio-hover">
+							<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+						</div>
+						<img class="img-fluid" src="../../../assets/img/01-thumbnail.jpg" alt="" />
+					</a>
+					<div class="portfolio-caption">
+						<div class="portfolio-caption-heading">Reglamento Escolar</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="portfolio-item">
+					<a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+						<div class="portfolio-hover">
+							<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+						</div>
+						<img class="img-fluid" src="../../../assets/img/Fondo3.jpg" alt="" />
+					</a>
+					<div class="portfolio-caption">
+						<div class="portfolio-caption-heading">Reglamento Compentencias</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</header>
+</section>
+<!-- Reglamentos -->
+
+<!-- About -->
+<section class="page-section" id="about">
+	<div class="container">
+		<div class="text-center">
+			<h2 class="section-heading text-uppercase">Tae Kwon Do</h2>
+			<h3 class="section-subheading text-muted">Conoce un poco mas.</h3>
+		</div>
+		<ul class="timeline">
+			<li>
+				<div class="timeline-image"><img class="rounded-circle img-fluid" src="../../../assets/img/2.jpg" alt="" /></div>
+				<div class="timeline-panel">
+					<div class="timeline-heading">
+						<h4>70's</h4>
+						<h4 class="subheading">Nace el Tae Kwon Do</h4>
+					</div>
+					<div class="timeline-body"><p class="text-muted">Crece como una actividad monopólica con buenos resultados que culminaron en el Subcampeonato Mundial conseguido en 1979. Sin embargo, dado un lustro disminuyo 
+						los logros por la separación del monopólio del Tae Kwon Do.
+					</p></div>
+				</div>
+			</li>
+			<li class="timeline-inverted">
+				<div class="timeline-image"><img class="rounded-circle img-fluid" src="../../../assets/img/1.jpg" alt="" /></div>
+				<div class="timeline-panel">
+					<div class="timeline-heading">
+						<h4>Abril 1976</h4>
+						<h4 class="subheading">Federación Mexicana de Taekwondo, A.C.</h4>
+					</div>
+					<div class="timeline-body"><p class="text-muted">La FMTKD inició sus actividades deporttivas en el año 1970, y quedó debidamente constituida el 30 de Abril de 1976, 
+						con el objetivo de organizar la representación mexicana en eventos internacionales.
+					</p></div>
+				</div>
+			</li>
+			<li>
+				<div class="timeline-image"><img class="rounded-circle img-fluid" src="../../../assets/img/3.jpg" alt="" /></div>
+				<div class="timeline-panel">
+					<div class="timeline-heading">
+						<h4>1988 - 1990</h4>
+						<h4 class="subheading">Más destacable</h4>
+					</div>
+					<div class="timeline-body"><p class="text-muted">Durante éste periodo se encuentran las 4 medallas de bronce ganadas en Seúl 1988 y el Campeonato de Juegos 
+						Centroamericanos obtenido en 1990.
+					</p></div>
+				</div>
+			</li>
+			<li class="timeline-inverted">
+				<div class="timeline-image"><img class="rounded-circle img-fluid" src="../../../assets/img/4.jpg" alt="" /></div>
+				<div class="timeline-panel">
+					<div class="timeline-heading">
+						<h4>Actualemnte</h4>
+					</div>
+					<div class="timeline-body"><p class="text-muted">La FMTKD está integrada con un total de 31 asociaciones Estatales, UNAM e IPN, así como grupos y escuelas.</p></div>
+				</div>
+			</li>
+			<li class="timeline-inverted">
+				<div class="timeline-image">
+					<h4>
+						Se parte
+						<br />
+						del
+						<br />
+						Club Leones!!!
+					</h4>
+				</div>
+			</li>
+		</ul>
+	</div>
+</section>
+<!-- About -->
+
+<!-- Modals -->
+<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="close-modal" data-dismiss="modal"><img src="../../../assets/img/close-icon.svg" alt="Close modal" /></div>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-8">
+						<div class="modal-body">
+							<!-- Project Details Go Here-->
+							<h2 class="text-uppercase">Reglamento Escolar</h2>
+							<p class="item-intro text-muted">Escuela Club Leones.</p>
+							<ul class="text-left">
+								<li>Al llegar e irse del Club Leones saludar al Maestro con una leve inclinación y dar las buenas tardes</li>
+								<li>Pedir permiso al Maestro para entrar (en caso de ausencia del Maestro, al alumno de mayor grado)</li>
+								<li>Una vez dado el permiso, saludar en posición de firmes llevadno la mano derecha al lado izquierdo del pecho.</li>
+								<li>El alumno deberá ser puntual</li>
+								<li>No entrar al tatami con calzado o con elementos ajenos al equipo</li>
+								<li>El alumno debe presentarse aseado y con la vestimenta apropiada para realizarsu entrenamiento. Las uñas de las manos y los pies deben estar cortas</li>
+								<li>La formación de la clase se realiza respetando el grado de mayor a menor y de derecha a izquierda. Al comienzo de la clase y al final de la clase, el alumno de mayor grado dará la orden 
+									de saludar al maestro
+								</li>
+								<li>No ingerir alimentos en la sala, ni masticar chicle</li>
+								<li>Se debe prestar atención a las explicaciones del Maestro y mantener silencio durante toda la clase. No usar lenguaje 
+									inapropiado ni malsonante. Se debe mostrar interés por el trabajo.
+								</li>
+								<li>Cuando se desee hacer alguna pregunta, llamr la atención del Maestro levantando la mano. Cuando éste se acerque, efectuar el saludo en correcta posición antes de preguntar</li>
+								<li>Cuidar el estado y limpieza del gimnasio y golpear solamente los equipos destinados a tal efecto</li>
+								<li>Siempre que se desee salir de la clase, solicitarlo al Maestro. Las necesidades fisiológicas deben hacerse antes de entrar en clase, solo en caso de urgencia se podrá salir al serviciio</li>
+								<li>En caso que deban sentarse, habrán de hacerlo en correcta posición: piernas cruzadas y espalda erguidad</li>
+								<li>No se consentirán faltas de respeto al maestro ni entre compañeros</li>
+								<li>Para arreglarse el Dobok, se debe volver la espalda</li>
+							</ul>
+							<button class="btn btn-primary" data-dismiss="modal" type="button">
+								<i class="fas fa-times mr-1"></i>
+								Cerrar
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal 2-->
+<div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="close-modal" data-dismiss="modal"><img src="../../../assets/img/close-icon.svg" alt="Close modal" /></div>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-8">
+						<div class="modal-body">
+							<!-- Project Details Go Here-->
+							<h2 class="text-uppercase">Reglamento en Competencia</h2>
+							<p class="item-intro text-muted">WORLD TAEKWONDO FEDERATION</p>
+							<ul class="text-left">
+								<li>Uniforme Oficial Taekwondo WTF
+									<ul class="text-left">
+										<li>Casaca o Sang</li>
+										<li>Pantalón o Hai</li>
+										<li>Cinturón o TI</li>
+									</ul>
+								</li>
+								<li>Protecciones obligatorias para Taekwondo WTF
+									<ul class="text-left">
+										<li>Protector de tronco o peto homologado</li>
+										<li>Protector de cabeza o casco homologado</li>
+										<li>Protector de ingle o coquilla homologada</li>
+										<li>Protector de antebrazo homologado</li>
+										<li>Protector de espinillas homologado</li>
+										<li>Guantillas homologadas</li>
+										<li>Protector bucal</li>
+									</ul>
+								</li>
+								<li>Duración de los encuentros de Taekwondo WTF
+									<ul class="text-left">
+										<li>El tiempo de duración de las competiciones de Taekwondo es de tres rondas 
+											de dos minútos cada uno, con un minúto de descanso entre cada ronda.
+											<br>
+											Si llegara a darse un empate, el resultado se definiría en una cuarta ronda de dos minútos a muerte súbita.
+										</li>
+									</ul>
+								</li>
+								<li>Lineamientos previos al combate
+									<ul class="text-left">
+										<li>
+											Los competidores serán llamados tres veces minutos antes de su combate, por lo que deberán estar siempre atentos, 
+											pues inmediatamente deberá presentarse para una inspección.
+										</li>
+									</ul>
+								</li>
+								<li>Procedimiento para comenzar el combate
+									<ul class="text-left">
+										<li>
+											El árbitro llamaŕa al tatami o área de combate a los dos competidores, los cuales portarán el color rojo o azul para diferenciarse.
+											<br>
+											Una ves posiscionados en su área de combate, deben mostrar respeto por su oponente así como por el árbitro, saludando cuando el árbitro lo señale. 
+										</li>
+									</ul>
+								</li>
+								<li>Procedimiento al terminar el combate
+									<ul class="text-left">
+										<li>Al finalizar el último round los competidores permanecerán en sus lugares, se quitarán su protector de cabeza y ofrecerán un saludo a su oponente cuando el árbitro lo indique 
+											con Cha-ryeot y Kyeong-rye.
+										</li>
+									</ul>
+								</li>
+								<li>Sistema de puntuación en Taekwondo
+									<ul class="text-left">
+										<li>Un punto para el ataque al peto o protector de pecho.</li>
+										<li>Tres puntos por patada válida con giro al cuerpo.</li>
+										<li>Tres puntos por ataque a la cabeza</li>
+										<li>Cuatro puntos por patada válida con giro a la cabeza.</li>
+									</ul>
+								</li>
+								<li>Técnicas y áreas permitidas para marcar puntos
+									<ul class="text-left">
+										<li>El Tae Kwon Do aenfoca sus técnicas en los puños y los pies, enviando los golpes al oponente al tronco y la cabeza.
+											<br>
+											Los golpes al tronco deben estar dirigidos en el área cubierta por el peto y se pueden usar ambas técnicas.
+										</li>
+									</ul>
+								</li>
+								<li>Comportamientos prohibidos y penalizaciones en Taekwondo WTF
+									<ul class="text-left">
+										<li>Salir del área límite de combate</li>
+										<li>Evitar el combate dando la espalda</li>
+										<li>Caerse intencionalmente</li>
+										<li>Fingir lesiones</li>
+										<li>Evitar el combate retrocediendo</li>
+										<li>Atacar al oponente bajo la cintura</li>
+										<li>Dar cabezazos o atacar con las rodillas</li>
+										<li>Atacar por debajo de la cintura</li>
+										<li>Golpear el rostro del oponente con la mano</li>
+										<li>Agarrar, retener o empujar al oponente</li>
+										<li>Hacer bloqueos con la rodilla</li>
+										<li>Realizar comentarios indeseables y fuera de lugar</li>
+										<li>Inactividad o pasividad de los competidores por más de 10 segundos</li>
+										<li>Proyectar al oponente</li>
+										<li>Interrumpir el combate</li>
+										<li>Atacar al oponente caído</li>
+										<li>Atacar al oponente después de la orden de Kai-yeo</li>
+										<li>Observaciones violentas o comportamientos extremos de un competidor</li>
+									</ul>
+								</li>
+							</ul>
+							<button class="btn btn-primary" data-dismiss="modal" type="button">
+								<i class="fas fa-times mr-1"></i>
+								Cerrar
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
