@@ -1,0 +1,22 @@
+<section>
+    <div class="card-body">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-center">Alumno</th>
+                    <th class="text-center">Examen</th>
+                    <th class="text-center">Fecha</th>
+                    <!--<th></th>-->
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let dato of datos">
+                    <td class="text-center">{{ dato.nombre }}</td>
+                    <td class="text-center">{{ dato.apellidos }}</td>
+                    <td class="text-center">{{ dato.actividad_marcial }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

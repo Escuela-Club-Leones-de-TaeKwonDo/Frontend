@@ -12,6 +12,9 @@ import { ExamenComponent } from './components/examen/examen.component';
 import { TipoEventoComponent } from './components/tipo-evento/tipo-evento.component';
 import { MainComponent } from './components/main/main.component';
 import { LoginComponent } from './components/autenticacion/login/login.component';
+import { EventoAlumnoComponent } from './components/evento-alumno/evento-alumno.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
+import { ExamenAlumnoComponent } from './components/examen-alumno/examen-alumno.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { LoginComponent } from './components/autenticacion/login/login.component
     TipoEventoComponent,
     MainComponent,
     LoginComponent,
+    EventoAlumnoComponent,
+    ContactoComponent,
+    ExamenAlumnoComponent,
   ],
   imports: [
     BrowserModule,

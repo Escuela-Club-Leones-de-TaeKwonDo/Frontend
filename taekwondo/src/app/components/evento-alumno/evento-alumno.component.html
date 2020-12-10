@@ -1,0 +1,35 @@
+<!-- Page Content -->
+<section>
+  <div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron my-4">
+      <h1 class="display-3">{{ principal ? principal.nombre : 'No hay eventos disponibles' }}</h1>
+      <p class="lead">Descripcion: {{ principal ? principal.descripcion : '' }}</p>
+      <p class="lead">Costo: ${{ principal ? principal.costo : '' }}</p>
+      <p class="lead">Enlace del evento: {{ principal ? principal.enlace_facebook : '' }}</p>
+      <a href="#" class="btn btn-primary btn-lg">Más!</a>
+    </header>
+
+    <!-- Page Features -->
+    <div class="row text-center" >
+
+      <div class="col-lg-3 col-md-6 mb-4" *ngFor="let evento of eventos">
+        <div class="card h-100">
+          <div class="card-body">
+            <h4 class="card-title">{{ evento.nombre }}</h4>
+            <p class="card-text">{{ evento.descripcion }}</p>
+            <p class="card-text">{{ evento.fecha_inicio | date: 'MMM dd, yyyy'}} - {{ evento.fecha_fin | date: 'MMM dd, yyyy'}}</p>
+            <p class="card-text">Costo:  ${{ evento.costo }}</p>
+            <p class="card-text">Enlace del evento:  {{ evento.enlace_facebook }}</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
+</section>
