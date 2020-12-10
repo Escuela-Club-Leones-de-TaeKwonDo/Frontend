@@ -15,6 +15,7 @@ import { LoginComponent } from './components/autenticacion/login/login.component
 import { EventoAlumnoComponent } from './components/evento-alumno/evento-alumno.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { ExamenAlumnoComponent } from './components/examen-alumno/examen-alumno.component';
+import { LoginAdministadorComponent } from './components/autenticacion/login-administador/login-administador.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ExamenAlumnoComponent } from './components/examen-alumno/examen-alumno.
     EventoAlumnoComponent,
     ContactoComponent,
     ExamenAlumnoComponent,
+    LoginAdministadorComponent,
   ],
   imports: [
     BrowserModule,

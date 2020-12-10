@@ -19,6 +19,10 @@ export class LoginService {
     return this.http.post<any>(this.API_URI + '/auth/alumno/login', datos_formulario);
   }
 
+  autenticarAdmin(datos_formulario: any){
+    return this.http.post<any>(this.API_URI + '/auth/admin/login', datos_formulario);
+  }
+
   isLoggedIn(){
     if(localStorage.getItem('token')){
       return true
@@ -41,6 +45,16 @@ export class LoginService {
   parseJwt() {
     let jwtHelper = new JwtHelperService();
     let objJwt = jwtHelper.decodeToken(this.jwt);
+  }
+
+  public isAuthenticated(): boolean {
+    let jwtHelper = new JwtHelperService();
+    const token = localStorage.getItem('token');
+    // Check whether the token is expired and return
+    // true or false
+    let objJwt = jwtHelper.decodeToken(token);
+    console.log(objJwt);
+    return !jwtHelper.isTokenExpired(token);
   }
 
   loadToken() {
