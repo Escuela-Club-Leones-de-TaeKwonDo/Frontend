@@ -15,8 +15,8 @@ export class AlumnoService {
     return this.http.get(this.API_URI+'/alumno');
   }
 
-  getAlumno(id_alumno: number){
-    return this.http.get(this.API_URI+'/alumno/'+id_alumno);
+  getAlumno(id: number){
+    return this.http.get(this.API_URI+'/alumno/'+id);
   }
 
   createAlumno(alumno: Alumno){
@@ -24,10 +24,10 @@ export class AlumnoService {
   }
 
   updateAlumno(alumno: Alumno){
-    return this.http.put(this.API_URI+'/alumno/'+alumno.id_alumno, alumno);
+    return this.http.put(this.API_URI+'/alumno/'+alumno.id, alumno);
   }
 
-  deleteAlumno(id_alumno: number){
-    return this.http.delete(this.API_URI+'/alumno/'+id_alumno);
+  deleteAlumno(id: number){
+    return this.http.delete(this.API_URI+'/alumno/'+id);
   }
 }

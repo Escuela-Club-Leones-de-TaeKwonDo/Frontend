@@ -1,5 +1,5 @@
 export class Alumno{
-    id_alumno: number;
+    id: number;
     nombre: String;
     apellidos: String;
     fecha_nacimiento: Date;
@@ -14,7 +14,7 @@ export class Alumno{
 
     constructor(id, nombre, apellidos, fecha_nacimiento, fotografia, actividad_marcial, grado,
         seguro_medico, certificado_medico, carta_responsiva, password, email){
-            this.id_alumno = id;
+            this.id = id;
             this.nombre = nombre;
             this.apellidos = apellidos;
             this.fecha_nacimiento = fecha_nacimiento;

@@ -26,7 +26,7 @@ export class AlumnoComponent implements OnInit {
 
   ngOnInit(): void {
     this.alumnoForm = this.formBuilder.group({
-      id_alumno: [''],
+      id: [''],
       nombre: ['', Validators.required],
       apellidos: ['', Validators.required],
       fecha_nacimiento: ['', Validators.required],
@@ -45,8 +45,8 @@ export class AlumnoComponent implements OnInit {
 
   // Consultar lista de alumnos
   getAlumnos(){
-    this.alumnos = [new Alumno(1, "Kevin", "Villegas", "11-10-1997", "Foto", "Tae Kwon Do", "Cinta Negra", "Seguro M", "Certificado M", "Carta R", "Pass", "Mail"),
-                    new Alumno(2, "Ricardo", "Salvador", "10-11-1997", "Fotografia", "Kick Boxing", "Cinta Morada", "Seguro", "Certificado", "Carta", "Password", "Email")];
+    this.alumnos = [];//[new Alumno(1, "Kevin", "Villegas", "11-10-1997", "Foto", "Tae Kwon Do", "Cinta Negra", "Seguro M", "Certificado M", "Carta R", "Pass", "Mail"),
+                    //new Alumno(2, "Ricardo", "Salvador", "10-11-1997", "Fotografia", "Kick Boxing", "Cinta Morada", "Seguro", "Certificado", "Carta", "Password", "Email")];
     this.alumnoService.getAlumnos().subscribe(
       res => {
         this.alumnos = res;
@@ -157,6 +157,7 @@ export class AlumnoComponent implements OnInit {
     this.submitted = true;
 
     if(this.alumnoForm.invalid){
+      console.log(this.alumnoForm.value);
       console.log("Formulario inválido");
       return;
     }
@@ -214,7 +215,7 @@ export class AlumnoComponent implements OnInit {
     this.alumnoForm.controls['apellidos'].setValue(alumno.apellidos);
     this.alumnoForm.controls['fecha_nacimiento'].setValue(alumno.fecha_nacimiento);
     this.alumnoForm.controls['fotografia'].setValue(alumno.fotografia);
-    this.alumnoForm.controls['actividad'].setValue(alumno.actividad_marcial);
+    this.alumnoForm.controls['actividad_marcial'].setValue(alumno.actividad_marcial);
     this.alumnoForm.controls['grado'].setValue(alumno.grado);
     this.alumnoForm.controls['seguro_medico'].setValue(alumno.seguro_medico);
     this.alumnoForm.controls['certificado_medico'].setValue(alumno.certificado_medico);
