@@ -1,4 +1,4 @@
-<div style="height: 40px;"></div>
+<!--<div style="height: 40px;"></div>
 <section>
     <div class="card-body">
         <table class="table">
@@ -6,9 +6,9 @@
                 <tr>
                     <th class="text-center">Alumno</th>
                     <th class="text-center">Examen</th>
-                    <th class="text-center">Fecha</th>
+                    <th class="text-center">Fecha</th>-->
                     <!--<th></th>-->
-                </tr>
+               <!-- </tr>
             </thead>
 
             <tbody>
@@ -20,4 +20,44 @@
             </tbody>
         </table>
     </div>
+</section> -->
+
+
+<!-- Page Content -->
+<div style="height: 65px;"></div>
+<section>
+  <div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron my-4">
+      <h1 class="display-3">{{ principal ? principal.nombre : 'No hay examenes disponibles' }}</h1>
+      <p class="lead">Tipo de Examen: {{ principal ? principal.tipo_examen : '' }}</p>
+      <p class="lead">Costo: ${{ principal ? principal.costo : '' }}</p>
+      <p class="lead">Horario: ${{ principal ? principal.horario : '' }}</p>
+      <p class="lead">Enlace del examen Facebook: {{ principal ? principal.enlace_facebook : '' }}</p>
+      <a href="#" class="btn btn-primary btn-lg">Más!</a>
+    </header>
+
+    <!-- Page Features -->
+    <div class="row text-center" >
+
+      <div class="col-lg-3 col-md-6 mb-4" *ngFor="let examen of examenes">
+        <div class="card h-100">
+          <div class="card-body">
+            <h4 class="card-title">{{ examen.nombre }}</h4>
+            <p class="card-text">{{ examen.tipo_examen }}</p>
+            <p class="card-text">{{ evento.fecha | date: 'MMM dd, yyyy'}} </p>
+            <p class="card-text">Costo:  ${{ evento.costo }}</p>
+            <p class="card-text">Horario:  ${{ evento.horario }}</p>
+            <p class="card-text">Enlace del examen en Facebook:  {{ evento.enlace_facebook }}</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
 </section>
