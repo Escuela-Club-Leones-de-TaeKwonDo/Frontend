@@ -8,6 +8,8 @@ import { EventoService } from 'src/app/_services/evento.service'
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { Router } from '@angular/router';
+
 import Swal from 'sweetalert2';
 
 declare var $: any;
@@ -28,7 +30,10 @@ export class EventoComponent implements OnInit {
   tipoEventos: TipoEvento[] | any;
   tipoEventoSeleccionado: number;
 
-  constructor(private tipoEventoService: TipoEventoService, private eventoService: EventoService, private formBuilder: FormBuilder) { }
+  constructor(private tipoEventoService: TipoEventoService,
+    private eventoService: EventoService,
+    private formBuilder: FormBuilder,
+    private router: Router) { }
 
   ngOnInit(): void {
     //inicia el formulario vacio 
@@ -167,6 +172,10 @@ export class EventoComponent implements OnInit {
   }
 
   get f() { return this.eventoForm.controls; }
+
+  abreTipoEvento(){
+    this.router.navigate(['/tipo-evento']);
+  }
 
   openModalEvento(){
     this.eventoForm.reset();

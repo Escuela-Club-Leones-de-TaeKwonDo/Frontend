@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'login-admin', component: LoginAdministadorComponent },
   {
-    path: 'evento',
+    path: 'alumno',
     component: AlumnoComponent,
     canActivate: [AuthGuard],
     data: { 
@@ -28,7 +28,7 @@ const routes: Routes = [
     } 
   },
   {
-    path: 'alumno',
+    path: 'evento',
     component: EventoComponent,
     canActivate: [AuthGuard],
     data: { 
