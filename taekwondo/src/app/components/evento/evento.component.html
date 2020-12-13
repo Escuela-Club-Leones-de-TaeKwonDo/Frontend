@@ -14,8 +14,10 @@
                 <select class="form-control" [(ngModel)]="tipoEventoSeleccionado" (change)="getEventoTipoEvento(tipoEventoSeleccionado)" name="tipoEventoSeleccionado" id="tipoEventoSeleccionado">
                     <option [ngValue]="undefined" hidden>Selecciona un tipo de evento...</option>
                     <option *ngFor="let tipo of tipoEventos" [ngValue]="tipo.id">{{tipo.nombre_tipo_evento}}</option>
-                    <option type="submit" routerLink="/tipo-evento">Administrar tipo de eventos</option>
                 </select>
+            </div>
+            <div class="col-sm-2">
+                <button style="float: right;" (click)="abreTipoEvento()" type="button" class="btn btn-outline-info btn-sm"> Administrar tipo de eventos</button>
             </div>
         </div>
 

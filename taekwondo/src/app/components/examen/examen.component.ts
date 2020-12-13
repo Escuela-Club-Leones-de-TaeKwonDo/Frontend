@@ -39,7 +39,7 @@ export class ExamenComponent implements OnInit {
 
   // Consultar lista de examenes
   getExamenes(){
-    this.examenes = [new Examen(1,"Examen","Promoción de grado", "2020-12-01",123,"12:00PM","http://localhost:4200/examen","solicutud")];
+    this.examenes = [];//[new Examen(1,"Examen","Promoción de grado", "2020-12-01",123,"12:00PM","http://localhost:4200/examen","solicitud")];
     this.examenService.getExamenes().subscribe(
       res => {
         this.examenes = res;
@@ -183,7 +183,7 @@ export class ExamenComponent implements OnInit {
   showPDF(pdf_base64){
     const linkSource = pdf_base64;
     const downloadLink = document.createElement("a");
-    const fileName = "solicitud_examen.pdf";
+    const fileName = "solicitudExamen.pdf";
 
     downloadLink.href = linkSource;
     downloadLink.download = fileName;

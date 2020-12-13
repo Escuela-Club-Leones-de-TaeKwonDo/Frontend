@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import swal from 'sweetalert2'
 
 import { LoginService } from 'src/app/_services/login.service';
-
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-login-administador',
+  templateUrl: './login-administador.component.html',
+  styleUrls: ['./login-administador.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginAdministadorComponent implements OnInit {
 
   loginForm: FormGroup
   email = ''
@@ -83,8 +83,9 @@ export class LoginComponent implements OnInit {
 
       return
     }else{
-        this.loginService.autenticar(this.loginForm.value).pipe(first())
+        this.loginService.autenticarAdmin(this.loginForm.value).pipe(first())
         .subscribe(res => {
+          localStorage.setItem('token', res.token);
           swal.fire({
             title: 'Bienvenido.',
             text: "Sesión Iniciada",
@@ -93,7 +94,7 @@ export class LoginComponent implements OnInit {
           });
           console.log(this.loginForm.controls['email'].value);
           this.loginService.loggedIn(this.loginForm.controls['email'].value, res);
-          this.router.navigate(['']);
+          this.router.navigate(['/alumno']);
           },
           err => {
           swal.fire({
