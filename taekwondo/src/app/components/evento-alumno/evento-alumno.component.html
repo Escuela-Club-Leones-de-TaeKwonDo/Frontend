@@ -8,8 +8,7 @@
       <h1 class="display-3">{{ principal ? principal.nombre : 'No hay eventos disponibles' }}</h1>
       <p class="lead">Descripcion: {{ principal ? principal.descripcion : '' }}</p>
       <p class="lead">Costo: ${{ principal ? principal.costo : '' }}</p>
-      <p class="lead">Enlace del evento: {{ principal ? principal.enlace_facebook : '' }}</p>
-      <a href="#" class="btn btn-primary btn-lg">Más!</a>
+      <a href="{{principal.enlace_facebook}}" class="btn btn-primary btn-lg">Más!</a>
     </header>
 
     <!-- Page Features -->
@@ -22,10 +21,9 @@
             <p class="card-text">{{ evento.descripcion }}</p>
             <p class="card-text">{{ evento.fecha_inicio | date: 'MMM dd, yyyy'}} - {{ evento.fecha_fin | date: 'MMM dd, yyyy'}}</p>
             <p class="card-text">Costo:  ${{ evento.costo }}</p>
-            <p class="card-text">Enlace del evento:  {{ evento.enlace_facebook }}</p>
           </div>
           <div class="card-footer">
-            <a href="https://www.facebook.com/Club-Leones-105059724793263" class="btn btn-primary">Más información</a>
+            <a href="{{evento.enlace_facebook}}" class="btn btn-primary">Más información</a>
           </div>
         </div>
       </div>
