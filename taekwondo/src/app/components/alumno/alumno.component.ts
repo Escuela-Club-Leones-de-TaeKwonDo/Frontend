@@ -329,6 +329,9 @@ export class AlumnoComponent implements OnInit {
   alumnoActividad: String;
   alumnoGrado: String;
   alumnoImagen: String;
+  alumnoCarta: String;
+  alumnoSeguro: String;
+  alumnoCertificado: String;
 
   openModalPerfil(alumno: Alumno){
     this.modalTitle = "Perfil";
@@ -338,6 +341,9 @@ export class AlumnoComponent implements OnInit {
     this.alumnoActividad = alumno.actividad_marcial;
     this.alumnoGrado = alumno.grado;
     this.alumnoImagen = alumno.fotografia;
+    this.alumnoCarta = alumno.carta_responsiva;
+    this.alumnoSeguro = alumno.seguro_medico;
+    this.alumnoCertificado = alumno.certificado_medico;
     $("#alumnoPerfil").modal("show");
   }
 
