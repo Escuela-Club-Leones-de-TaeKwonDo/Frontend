@@ -34,7 +34,7 @@
       <p class="lead">Tipo de Examen: {{ principal ? principal.tipo_examen : '' }}</p>
       <p class="lead">Costo: ${{ principal ? principal.costo : '' }}</p>
       <p class="lead">Horario: ${{ principal ? principal.horario : '' }}</p>
-      <p class="lead">Enlace del examen Facebook: {{ principal ? principal.enlace_facebook : '' }}</p>
+      <p class="lead">Solicitud Examen: {{ principal ? principal.solicitud_examen : '' }}</p>
       <a href="#" class="btn btn-primary btn-lg">Más!</a>
     </header>
 
@@ -49,10 +49,11 @@
             <p class="card-text">{{ examen.fecha | date: 'MMM dd, yyyy'}} </p>
             <p class="card-text">Costo:  ${{ examen.costo }}</p>
             <p class="card-text">Horario:  ${{ examen.horario }}</p>
-            <p class="card-text">Enlace del examen en Facebook:  {{ examen.enlace_facebook }}</p>
+            <!--<p class="card-text">Solicitud Examen:  {{ examen.solicitud_examen }}</p>-->
+            <p class="card-text"><button (click)="showPDF(examen.solicitud_examen)" type="button" class="btn btn-link"><i class="fas fa-book-reader"></i>&nbsp;&nbsp;Solicitud</button></p>
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
+            <a href="https://www.facebook.com/Club-Leones-105059724793263" class="btn btn-primary">Más información</a>
           </div>
         </div>
       </div>
