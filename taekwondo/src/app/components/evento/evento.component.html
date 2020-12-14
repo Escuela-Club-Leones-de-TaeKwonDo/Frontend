@@ -168,6 +168,24 @@
                         <button class="btn btn-outline-success btn-block">Inscribir</button>
                     </div>
                 </div>
+                <div>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Apellidos</th>
+                                <th class="text-center">Actividad Marcial</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let alumno of alumnos">
+                                <td class="text-center">{{ alumno.nombre }}</td>
+                                <td class="text-center">{{ alumno.apellidos }}</td>
+                                <td class="text-center">{{ alumno.actividad_marcial }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

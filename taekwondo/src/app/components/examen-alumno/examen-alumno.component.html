@@ -48,7 +48,7 @@
             <p class="card-text">{{ examen.tipo_examen }}</p>
             <p class="card-text">{{ examen.fecha | date: 'MMM dd, yyyy'}} </p>
             <p class="card-text">Costo:  ${{ examen.costo }}</p>
-            <p class="card-text">Horario:  ${{ examen.horario }}</p>
+            <p class="card-text">Horario: {{ examen.horario }}</p>
             <p class="card-text"><button (click)="showPDF(examen.solicitud_examen)" type="button" class="btn btn-link"><i class="fas fa-book-reader"></i>&nbsp;&nbsp;Solicitud</button></p>
           </div>
           <div class="card-footer">
