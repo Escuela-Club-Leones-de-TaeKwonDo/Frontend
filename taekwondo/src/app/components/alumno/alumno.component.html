@@ -1,13 +1,182 @@
-    <div style="height: 110px;"></div>  
+<div style="height: 110px;"></div>
+<div class="container-fluid">
+    <div class="card mb-3">
+        
+        <!-- Header -->
+        <div class="card-header">
+            <h3 class="card-title"><i class="fas fa-user"></i>&nbsp;&nbsp;Alumno</h3>
+            <button style="float: right;" (click)="openModalAlumno()" type="button" class="btn btn-outline-info btn-sm">Registrar Alumno <i class="fa fa-user-plus"></i></button>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellidos</th>
+                        <th class="text-center">Actividad Marcial</th>
+                        <!--<th class="text-center">Fotografia</th>-->
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let alumno of alumnos">
+                        <td class="text-center">{{ alumno.nombre }}</td>
+                        <td class="text-center">{{ alumno.apellidos }}</td>
+                        <td class="text-center">{{ alumno.actividad_marcial }}</td>
+                        <!--<td class="text-center">
+                            <div class="card card-tweet" style="width: 18rem;">
+                                <img class="center-img" src="{{ alumno.fotografia }}" width="150" height="150">
+                                <div class="card-body">
+                                    <p class="card-text">{{ alumno.grado }}</p>
+                                </div>
+                            </div>
+                        </td>-->
+                        <td>
+                            <div>
+                                <button (click)="updateAlumno(alumno)" type="button" class="btn btn-outline-info">Perfil <i class="fas fa-user"></i></button>
+                                &nbsp;&nbsp;
+                                <button (click)="updateAlumno(alumno)" type="button" class="btn btn-outline-primary">Editar <i class="fas fa-edit"></i></button>
+                                &nbsp;&nbsp;
+                                <button (click)="deleteAlumno(alumno.id)" type="button" class="btn btn-outline-danger">Eliminar <i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<div class="modal" id="alumnoModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{ modalTitle }} Alumno</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="alumnoForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="nombre">Nombre <span class="text-danger">*</span></label>
+                        <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }"/>
+                        <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                            <div *ngIf="f.nombre.errors.required">El nombre del alumno es obligatorio</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidos">Apellido(s) <span class="text-danger">*</span></label>
+                        <input type="text" formControlName="apellidos" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellidos.errors }"/>
+                        <div *ngIf="submitted && f.apellidos.errors" class="invalid-feedback">
+                            <div *ngIf="f.apellidos.errors.required">El apellido(s) del alumno es obligatorio</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha_nacimiento">Fecha de nacimiento <span class="text-danger">*</span></label>
+                        <input type="date" formControlName="fecha_nacimiento" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fecha_nacimiento.errors }"/>
+                        <div *ngIf="submitted && f.fecha_nacimiento.errors" class="invalid-feedback">
+                            <div *ngIf="f.fecha_nacimiento.errors.required">La fecha de nacimiento del alumno es obligatorio</div>
+                        </div>
+                    </div>
+                    <label for="fotografia">Fotografia <span class="text-danger">*</span></label>
+                    <div class="custom-file">
+                        <input type="file" accept="image/*" class="custom-file-input" (change)="imagenSelected($event)" [ngClass]="{ 'is-invalid': submitted && f.fotografia.errors }"/>
+                        <label class="custom-file-label" for="cutomFile">Selecciona una imágen...</label>
+                        <div *ngIf="submitted && f.fotografia.errors" class="invalid-feedback">
+                            <div *ngIf="f.fotografia.errors.required">La fotografia del alumno es obligatorio</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="actividad_marcial">Actividad marcial <span class="text-danger">*</span></label>
+                        <select class="form-control" (change)="cambioCinta($event.target.value)">
+                            <option [ngValue]="undefined" selected>Selecciona una actividad marcial</option>
+                            <option *ngFor="let actividad of actividades" [ngValue]="actividad">{{ actividad }}</option>
+                        </select>
+                        <div *ngIf="submitted && f.actividad_marcial.errors" class="invalid-feedback">
+                            <div *ngIf="f.actividad_marcial.errors.required">La actividad marcial del alumno es obligatorio</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="grado">Grado <span class="text-danger">*</span></label>
+                        <select class="custom-select" (change)="chequeoGrado($event.target.value)">
+                            <option [ngValue]="undefined" selected>Selecciona una cinta</option>
+                            <option *ngFor="let cinta of cintas" [ngValue]="cinta">{{ cinta }}</option>
+                        </select>
+                        <div *ngIf="submitted && f.grado.errors" class="invalid-feedback">
+                            <div *ngIf="f.grado.errors.required">El grado del alumno es obligatorio</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="seguro_medico">Seguro médico <span class="text-danger">*</span></label>
+                        <div class="custom-file">
+                            <input type="file" accept=".pdf" class="custom-file-input" (change)="convertFileSeguro($event)" [ngClass]="{ 'is-invalid': submitted && f.seguro_medico.errors }"/>
+                            <label class="custom-file-label" for="customFile">Selecciona un archivo pdf...</label>
+                            <div *ngIf="submitted && f.seguro_medico.errors" class="invalid-feedback">
+                                <div *ngIf="f.seguro_medico.errors.required">El seguro médico del alumno es obligatorio</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="certificado_medico">Certificado médico <span class="text-danger">*</span></label>
+                        <div class="custom-file">
+                            <input type="file" accept=".pdf" class="custom-file-input" (change)="convertFileCertificado($event)" [ngClass]="{ 'is-invalid': submitted && f.certificado_medico.errors }"/>
+                            <label class="custom-file-label" for="customFile">Selecciona un archivo pdf...</label>
+                            <div *ngIf="submitted && f.certificado_medico.errors" class="invalid-feedback">
+                                <div *ngIf="f.certificado_medico.errors.required">El certificado médico del alumno es obligatorio</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="carta_responsiva">Carta responsiva <span class="text-danger">*</span></label>
+                        <div class="custom-file">
+                            <input type="file" accept=".pdf" class="custom-file-input" (change)="convertFileCarta($event)" [ngClass]="{ 'is-invalid': submitted && f.carta_responsiva.errors }"/>
+                            <label class="custom-file-label" for="customFile">Selecciona un archivo pdf...</label>
+                            <div *ngIf="submitted && f.carta_responsiva.errors" class="invalid-feedback">
+                                <div *ngIf="f.carta_responsiva.errors.required">La carta responsiva del alumno es obligatorio</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico <span class="text-danger">*</span></label>
+                        <input name="usuario" type="email" placeholder="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">El correo electrónico del alumno es obligatorio</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña <span class="text-danger">*</span></label>
+                        <input name="password" type="password" placeholder="Contraseña" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">El password es obligatorio</div>
+                            <div *ngIf="f.password.errors.minLength">Tu contraseña debe tener min. 8 caracteres</div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-right"><span class="text-danger">*</span>Campos requeridos</p>
+                    <div>
+                        <button class="btn btn-success btn-block">Guardar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--    <div style="height: 110px;"></div>  
        <div class="container-fluid">
             <div class="card mb-3">
-                <!-- Header  -->
+                <!-- Header 
                 <div class="card-header">
                     <h3 class="card-title"><i class="fas fa-user"></i>&nbsp;&nbsp;Alumno</h3>
                     <button style="float: right;" (click)="openModalAlumno()" type="button" class="btn btn-outline-info btn-sm">Registrar Alumno <i class="fa fa-user-plus"></i></button>
                 </div>
 
-                <!-- Body  -->
+                <!-- Body 
                 <div class="card-body">
                     <table class="table">
                         <thead class="thead-dark">
@@ -16,7 +185,7 @@
                                 <th class="text-center">Apellidos</th>
                                 <th class="text-center">Actividad</th>
                                 <th class="text-center">Carta responsiva</th>
-                                <!--<th></th>-->
+                                <!--<th></th>
                             </tr>
                         </thead>
 
@@ -25,10 +194,10 @@
                                 <td class="text-center">{{ alumno.nombre }}</td>
                                 <td class="text-center">{{ alumno.apellidos }}</td>
                                 <td class="text-center">{{ alumno.actividad_marcial }}</td>
-                                <td class="text-center"><button (click)="showPDF(alumno.carta_responsiva)" type="button" class="btn btn-link"><i class="fas fa-id-card"></i>&nbsp;&nbsp;ver carta responsiva</button></td>
+                                <!--<td class="text-center"><button (click)="showPDF(alumno.carta_responsiva)" type="button" class="btn btn-link"><i class="fas fa-id-card"></i>&nbsp;&nbsp;ver carta responsiva</button></td>
                                 <td>
                                     <div>
-                                        <button (click)="openModalPerfil(alumno)" type="button" class="btn btn-outline-primary">Perfil <i class="far fa-user"></i></button>
+                                        <!--<button (click)="openModalPerfil(alumno)" type="button" class="btn btn-outline-primary">Perfil <i class="far fa-user"></i></button>
                                         &nbsp;&nbsp;
                                         <button (click)="updateAlumno(alumno)" type="button" class="btn btn-outline-info">Editar <i class="fas fa-edit"></i></button>
                                         &nbsp;&nbsp;
@@ -47,8 +216,100 @@
 <div class="modal" id="alumnoModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <!--Header to data-->
+
             <div class="modal-header">
+                <h4 class="modal-title"><i class="fas fa-users"></i>&nbsp;&nbsp;{{modalTitle}} Alumno</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="alumnoForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="nombre">Nombre<span class="text-danger">*</span></label>
+                        <input type="text" formControl="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }"/>
+                        <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                            <div *ngIf="f.nombre.errors.required">El nombre del alumno es obligatorio</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidos">Apellidos<span class="text-danger">*</span></label>
+                        <input type="text" formControl="apellidos" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellidos.errors }"/>
+                        <div *ngIf="submitted && f.apellidos.errors" class="invalid-feedback">
+                            <div *ngIf="f.apellidos.errors.required">El apellido(s) del alumno es obligatorio</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha_nacimiento">Fecha de nacimiento<span class="text-danger">*</span></label>
+                        <input type="date" formControl="fecha_nacimiento" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fecha_nacimiento.errors }"/>
+                        <div *ngIf="submitted && f.fecha_nacimiento.errors" class="invalid-feedback">
+                            <div *ngIf="f.fecha_nacimiento.errors.required">La fecha de nacimiento es obligatoria</div>
+                        </div>
+                    </div>
+                    <label for="fotografia">Fotografia<span class="text-danger">*</span></label>
+                    <div class="custom-file">
+                        <input type="file" accept="image/*" class="custom-file-input" (change)="imagenSelected($event)">
+                        <label class="custom-file-label" for="customFile">Selecciona una fotografia de perfil...</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="actividad_marcial">Actividad Marcial<span class="text-danger">*</span></label>
+                        <input type="text" formControl="actividad_marcial" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.actividad_marcial.errors }"/>
+                        <div *ngIf="submitted && f.actividad_marcial.errors" class="invalid-feedback">
+                            <div *ngIf="f.actividad_marcial.errors.required">La actividad marcial es obligatoria</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="grado">Grado<span class="text-danger">*</span></label>
+                        <input type="text" formControl="grado" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.grado.errors }"/>
+                        <div *ngIf="submitted && f.grado.errors" class="invalid-feedback">
+                            <div *ngIf="f.grado.errors.required">El grado es obligatoria</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="seguro_medico">Seguro Médico<span class="text-danger">*</span></label>
+                        <input type="text" formControl="seguro_medico" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.seguro_medico.errors }"/>
+                        <div *ngIf="submitted && f.seguro_medico.errors" class="invalid-feedback">
+                            <div *ngIf="f.seguro_medico.errors.required">El seguro médico es obligatoria</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="certificado_medico">Certificado Médico<span class="text-danger">*</span></label>
+                        <input type="text" formControl="certificado_medico" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.certificado_medico.errors }"/>
+                        <div *ngIf="submitted && f.certificado_medico.errors" class="invalid-feedback">
+                            <div *ngIf="f.certificado_medico.errors.required">El certificado médico es obligatoria</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="carta_responsiva">Carta Responsiva<span class="text-danger">*</span></label>
+                        <input type="text" formControl="carta_responsiva" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.carta_responsiva.errors }"/>
+                        <div *ngIf="submitted && f.carta_responsiva.errors" class="invalid-feedback">
+                            <div *ngIf="f.carta_responsiva.errors.required">La carta responsiva es obligatoria</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password<span class="text-danger">*</span></label>
+                        <input type="text" formControl="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">La fecha de nacimiento es obligatoria</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail<span class="text-danger">*</span></label>
+                        <input type="text" formControl="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">La fecha de nacimiento es obligatoria</div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <p class="text-right"><span class="text-danger">*</span> Campos requeridos</p>
+                    <div>
+                        <button class="btn btn-success btn-block">Guardar</button>
+                    </div>
+                </form>
+            </div>
+            <!--Header to data-->
+            <!--<div class="modal-header">
                 <h4 class="modal-title"><i class="fas fa-users"></i>&nbsp;&nbsp;{{modalTitle}} Alumno</h4>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
@@ -108,8 +369,8 @@
                                 <label for="fotografia" class="col-sm-2 col-form-label">Fotografia<span class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <div class="custom-file">
-                                        <input id= "idimagen" type="file" accept="image/*" class="custom-file-input" (change)="imagenSelected($event)">
-                                        <label class="custom-file-label" for="idimagen">Selecciona una imágen...</label>
+                                        <input type="file" accept="image/*" class="custom-file-input" (change)="imagenSelected($event)">
+                                        <label class="custom-file-label" for="customFile">Selecciona una imágen...</label>
                                     </div>
                                 </div>
                             </div>
@@ -181,9 +442,9 @@
                             <div class="form-group row">
                                 <label for="actividad_marcial" class="col-sm-2 col-form-label">Actividad<span class="text-danger">*</span></label>
                                 <div class="col-sm-10">
-                                    <select (change)="cambioCinta($event.target.value)" class="custom-select">
-                                        <option disabled selected>Selecciona una actividad marcial</option>
-                                        <option *ngFor="let actividad of actividades" [value]='actividad'>{{actividad}}</option>
+                                    <select class="form-control" formControlName="actividad_marcial" (change)="cambioCinta($event.target.value)">
+                                        <option [ngValue]="undefined" selected>Selecciona una actividad marcial</option>
+                                        <option *ngFor="let actividad of actividades" [ngValue]="actividad">{{actividad}}</option>
                                     </select>
                                     <div *ngIf="submitted && f.actividad.errors" class="invalid-feedback">
                                         <div *ngIf="f.actividad.errors.required">La actividad es obligatorio</div>
@@ -195,8 +456,9 @@
                                 <label for="grado" class="col-sm-2 col-form-label">Grado<span class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <select class="custom-select">
-                                        <option *ngFor="let cinta of cintas">{{cinta}}</option>
+                                        <option *ngFor="let cinta of cintas" [value]="cinta">{{cinta}}</option>
                                     </select>
+                                    <select ></select>
                                     <div *ngIf="submitted && f.grado.errors" class="invalid-feedback">
                                         <div *ngIf="f.grado.errors.required">La actividad es obligatorio</div>
                                     </div>
@@ -219,7 +481,6 @@
 </div>
 
 <br><br>
-
 <div class="modal" id="alumnoPerfil">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -272,3 +533,4 @@
         </div>
     </div>
 </div>
+-->
