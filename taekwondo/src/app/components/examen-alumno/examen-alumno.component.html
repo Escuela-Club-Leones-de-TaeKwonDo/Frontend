@@ -46,10 +46,10 @@
           <div class="card-body">
             <h4 class="card-title">{{ examen.nombre }}</h4>
             <p class="card-text">{{ examen.tipo_examen }}</p>
-            <p class="card-text">{{ evento.fecha | date: 'MMM dd, yyyy'}} </p>
-            <p class="card-text">Costo:  ${{ evento.costo }}</p>
-            <p class="card-text">Horario:  ${{ evento.horario }}</p>
-            <p class="card-text">Enlace del examen en Facebook:  {{ evento.enlace_facebook }}</p>
+            <p class="card-text">{{ examen.fecha | date: 'MMM dd, yyyy'}} </p>
+            <p class="card-text">Costo:  ${{ examen.costo }}</p>
+            <p class="card-text">Horario:  ${{ examen.horario }}</p>
+            <p class="card-text">Enlace del examen en Facebook:  {{ examen.enlace_facebook }}</p>
           </div>
           <div class="card-footer">
             <a href="#" class="btn btn-primary">Find Out More!</a>

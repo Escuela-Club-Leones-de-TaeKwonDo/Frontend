@@ -14,13 +14,26 @@ export class ExamenAlumnoComponent implements OnInit {
 
   datos: Alumno;
   principal: Examen;
-  examenes: Examen[];
+  examenes: Examen[] | any;
   submitted = false;
   modalTitle: String;
   
-  constructor() { }
+  constructor(private examenService: ExamenService) { }
   
   ngOnInit(): void {
+    this.getExamenes()
+  }
+
+  getExamenes(){
+    //this.examenes = [];//[new Examen(1,"Examen","Promoción de grado", "2020-12-01",123,"12:00PM","http://localhost:4200/examen","solicitud")];
+    this.examenService.getExamenes().subscribe(
+      res => {
+        this.examenes = res;
+        this.principal = this.examenes.pop();  //elimina el primer elemento del arreglo y lo devuleve
+        console.log(this.examenes)
+      },
+      err => console.error(err)
+    )
   }
 
 }
