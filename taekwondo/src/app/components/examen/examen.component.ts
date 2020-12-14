@@ -24,6 +24,7 @@ export class ExamenComponent implements OnInit {
   modalTitle: String;
 
   alumnos: Alumno[] | any;
+  alumnosExamen: Alumno[] | any;
   alumnoSeleccionado: number;
 
   constructor(private examenService: ExamenService, private loginService: LoginService, private formBuilder: FormBuilder, private alumnoService: AlumnoService) { }
@@ -42,13 +43,24 @@ export class ExamenComponent implements OnInit {
     //Consulte la lista de examenes
     this.getExamenes();
     this.alumnoSeleccionado = 0;
+    this.getAlumnos();
   }
 
-  getAlumnos(id){
+  getAlumnos(){
     this.alumnos = [];
-    this.examenService.getAlumnos(id).subscribe(
+    this.alumnoService.getAlumnos().subscribe(
       res => {
         this.alumnos = res;
+      },
+      err => console.error(err)
+    )
+  }
+
+  getAlumnosExamen(id){
+    this.alumnosExamen = [];
+    this.examenService.getAlumnos(id).subscribe(
+      res => {
+        this.alumnosExamen = res;
       },
       err => console.error(err)
     )
@@ -77,8 +89,10 @@ export class ExamenComponent implements OnInit {
     )
   }
 
-  createEx_al(examen: Examen){
-    this.examenService.createEx_al(new ExamenLista(examen.id,this.alumnoSeleccionado)).subscribe(
+  createEx_al(){
+    console.log(this.idExamen);
+    console.log(this.alumnoSeleccionado);
+    this.examenService.createEx_al(new ExamenLista(this.idExamen,this.alumnoSeleccionado)).subscribe(
       res => {
         Swal.fire({
           position: 'top-end',
@@ -88,6 +102,7 @@ export class ExamenComponent implements OnInit {
           timer: 1500
         })
         $("#asignaModal").modal("hide");
+        this.getAlumnosExamen(this.idExamen);
       },
       err => console.error(err)
     )
@@ -225,8 +240,11 @@ export class ExamenComponent implements OnInit {
     return downloadLink;
   }
 
+  idExamen: number;
   asignarAlumno(examen: Examen){
     this.modalTitle = "Asignar alumno a " + examen.nombre;
+    this.idExamen = examen.id;
+    this.getAlumnosExamen(this.idExamen);
     $("#asignarModal").modal("show");
   }
 

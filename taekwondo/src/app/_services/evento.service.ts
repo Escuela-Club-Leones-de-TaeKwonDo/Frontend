@@ -40,4 +40,8 @@ export class EventoService {
   createEv_al(eventoLista: EventoLista){
     return this.http.post(this.API_URI+"/eventoA/",eventoLista);
   }
+
+  getAlumnos(id:number){
+    return this.http.get(this.API_URI+'/eventoA/'+id);
+  }
 }

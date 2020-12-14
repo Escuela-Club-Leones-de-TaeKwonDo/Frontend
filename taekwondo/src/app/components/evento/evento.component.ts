@@ -32,6 +32,7 @@ export class EventoComponent implements OnInit {
   modalTitle: String;
 
   alumnos: Alumno[] | any;
+  alumnosEvento: Alumno[] | any;
   alumnoSeleccionado: number;
 
   tipoEventos: TipoEvento[] | any;
@@ -92,6 +93,16 @@ export class EventoComponent implements OnInit {
     )
   }
 
+  getAlumnosEvento(id){
+    this.alumnosEvento = [];
+    this.eventoService.getAlumnos(id).subscribe(
+      res => {
+        this.alumnosEvento = res;
+      },
+      err => console.error(err)
+    )
+  }
+
   getEvento(id){
     this.evento = null;
     this.eventoService.getEvento(id).subscribe(
@@ -130,8 +141,10 @@ export class EventoComponent implements OnInit {
     })
   }
 
-  createEv_al(evento: Evento){
-    this.eventoService.createEv_al(new EventoLista(evento.id,this.alumnoSeleccionado)).subscribe(
+  createEv_al(){
+    console.log(this.idEvento);
+    console.log(this.alumnoSeleccionado);
+    this.eventoService.createEv_al(new EventoLista(this.idEvento,this.alumnoSeleccionado)).subscribe(
       res => {
         Swal.fire({
           position: 'top-end',
@@ -141,6 +154,7 @@ export class EventoComponent implements OnInit {
           timer: 1500
         })
         $("#asignaModal").modal("hide");
+        this.getAlumnosEvento(this.idEvento);
       },
       err => console.error(err)
     )
@@ -217,8 +231,11 @@ export class EventoComponent implements OnInit {
     $("#eventoModal").modal("show");
   }
 
+  idEvento: number;
   asignarAlumno(evento: Evento){
     this.modalTitle = "Asignar alumno a " + evento.nombre;
+    this.idEvento = evento.id;
+    this.getAlumnosEvento(this.idEvento);
     $("#asignarModal").modal("show");
   }
 
