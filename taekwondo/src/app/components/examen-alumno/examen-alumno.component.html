@@ -34,7 +34,7 @@
       <p class="lead">Tipo de Examen: {{ principal ? principal.tipo_examen : '' }}</p>
       <p class="lead">Costo: ${{ principal ? principal.costo : '' }}</p>
       <p class="lead">Horario: ${{ principal ? principal.horario : '' }}</p>
-      <p class="lead">Solicitud Examen: {{ principal ? principal.solicitud_examen : '' }}</p>
+      <p class="card-text"><button (click)="showPDF(principal.solicitud_examen)" type="button" class="btn btn-link"><i class="fas fa-book-reader"></i>&nbsp;&nbsp;Solicitud</button></p>
       <a href="#" class="btn btn-primary btn-lg">Más!</a>
     </header>
 
