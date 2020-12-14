@@ -95,6 +95,7 @@ export class LoginAdministadorComponent implements OnInit {
           console.log(this.loginForm.controls['email'].value);
           this.loginService.loggedIn(this.loginForm.controls['email'].value, res);
           this.router.navigate(['/alumno']);
+          window.location.reload();
           },
           err => {
           swal.fire({
