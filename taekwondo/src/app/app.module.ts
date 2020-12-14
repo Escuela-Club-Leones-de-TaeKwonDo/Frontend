@@ -16,6 +16,7 @@ import { EventoAlumnoComponent } from './components/evento-alumno/evento-alumno.
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { ExamenAlumnoComponent } from './components/examen-alumno/examen-alumno.component';
 import { LoginAdministadorComponent } from './components/autenticacion/login-administador/login-administador.component';
+import { NavComponent } from './components/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { LoginAdministadorComponent } from './components/autenticacion/login-adm
     EventoComponent,
     ExamenComponent,
     TipoEventoComponent,
+    NavComponent,
     MainComponent,
     LoginComponent,
     EventoAlumnoComponent,
