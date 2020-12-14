@@ -19,14 +19,15 @@ const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'login', component: LoginComponent },
   { path: 'login-admin', component: LoginAdministadorComponent },
-  {
+  /*{
     path: 'alumno',
     component: AlumnoComponent,
     canActivate: [AuthGuard],
     data: { 
       expectedRole: 'admin@mail.com'
     } 
-  },
+  },*/
+  { path: 'alumno', component: AlumnoComponent },
   {
     path: 'evento',
     component: EventoComponent,
@@ -43,7 +44,14 @@ const routes: Routes = [
       expectedRole: 'admin@mail.com'
     } 
   },
-  { path: 'tipo-evento', component: TipoEventoComponent },
+  {
+    path: 'tipo-evento',
+    component: TipoEventoComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRole: 'admin@mail.com'
+    }
+  },
   { path: 'evento-alumno', component: EventoAlumnoComponent },
   { path: 'examen-alumno', component: ExamenAlumnoComponent },
   { path: 'contacto', component: ContactoComponent },

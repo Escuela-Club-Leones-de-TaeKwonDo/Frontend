@@ -18,7 +18,7 @@ export class AlumnoComponent implements OnInit {
   alumnos: Alumno[] | any;
   alumno: Alumno | any;
   alumnoForm: FormGroup;
-  imagen: File;
+  fotografia: File;
   submitted = false;
   modalTitle: String;
 
@@ -31,7 +31,7 @@ export class AlumnoComponent implements OnInit {
       apellidos: ['', Validators.required],
       fecha_nacimiento: ['', Validators.required],
       fotografia: [''],
-      actividad: ['', Validators.required],
+      actividad_marcial: ['', Validators.required],
       grado: ['', Validators.required],
       seguro_medico: [''],
       certificado_medico: [''],
@@ -45,8 +45,8 @@ export class AlumnoComponent implements OnInit {
 
   // Consultar lista de alumnos
   getAlumnos(){
-    this.alumnos = [];//[new Alumno(1, "Kevin", "Villegas", "11-10-1997", "Foto", "Tae Kwon Do", "Cinta Negra", "Seguro M", "Certificado M", "Carta R", "Pass", "Mail"),
-                    //new Alumno(2, "Ricardo", "Salvador", "10-11-1997", "Fotografia", "Kick Boxing", "Cinta Morada", "Seguro", "Certificado", "Carta", "Password", "Email")];
+    this.alumnos = [new Alumno(1, "Kevin", "Villegas", "11-10-1997", "Foto", "Tae Kwon Do", "Cinta Negra", "Seguro M", "Certificado M", "Carta R", "Pass", "Mail"),
+                    new Alumno(2, "Ricardo", "Salvador", "10-11-1997", "Fotografia", "Kick Boxing", "Cinta Morada", "Seguro", "Certificado", "Carta", "Password", "Email")];
     this.alumnoService.getAlumnos().subscribe(
       res => {
         this.alumnos = res;
@@ -95,14 +95,15 @@ export class AlumnoComponent implements OnInit {
   }
 
   imagenSelected(event){
-    this.imagen = <File> event.target.files[0];
+    this.fotografia = <File> event.target.files[0];
   }
 
   convertImage(thiss): any {
     let reader = new FileReader();
-    reader.readAsDataURL(thiss.imagen);
+    reader.readAsDataURL(thiss.fotografia);
     reader.onload = function () {
       thiss.alumnoForm.controls['fotografia'].setValue(reader.result);
+      console.log(thiss.alumnoForm.value);
 
       if(thiss.modalTitle == "Registrar"){
         thiss.alumnoService.createAlumno(thiss.alumnoForm.value).subscribe(
@@ -162,55 +163,14 @@ export class AlumnoComponent implements OnInit {
       return;
     }
 
-    if(this.modalTitle == "Registrar"){
-      this.alumnoService.createAlumno(this.alumnoForm.value).subscribe(
-        res => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'El alumno ha sido registrado',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          $("#alumnoModal").modal("hide");
-          this.getAlumnos();
-          this.submitted = false;
-        },
-        err => console.error(err)
-      )
-    }else{
-      console.log(this.alumnoForm.value);
-      this.alumnoService.updateAlumno(this.alumnoForm.value).subscribe(
-        res => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'El alumno ha sido actualizado',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          $("#alumnoModal").modal("hide");
-          this.getAlumnos();
-          this.submitted = false;
-        },
-        err => {
-          console.error(err);
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Error al conectar con el servidor'
-          })
-        }
-      )
-    }
+    this.convertImage(this);
   }
-
-  
 
   // Actualizar un alumno
   updateAlumno(alumno: Alumno){
     this.submitted = true;
 
+    this.alumnoForm.controls['id'].setValue(alumno.id);
     this.alumnoForm.controls['nombre'].setValue(alumno.nombre);
     this.alumnoForm.controls['apellidos'].setValue(alumno.apellidos);
     this.alumnoForm.controls['fecha_nacimiento'].setValue(alumno.fecha_nacimiento);
@@ -227,7 +187,79 @@ export class AlumnoComponent implements OnInit {
   }
 
   //Convertir un archivo pdf a base 64
-  convertFile(event){
+  convertFileSeguro(event){
+    var pdftobase64 = function(file,form){
+      Swal.fire({
+        title: 'Espera un momento!',
+        html: 'El archivo PDF se está cargando',
+        allowOutsideClick: false,
+        onBeforeOpen: () => {
+          Swal.showLoading()
+        },
+      });
+
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function(){
+        form.controls['seguro_medico'].setValue(reader.result);
+        Swal.close();
+      };
+      reader.onerror = function(error){
+        console.log('Error: ',error);
+      };
+    }
+    pdftobase64(<File> event.target.files[0], this.alumnoForm);
+  }
+
+  showPDFSeguro(pdf_base64){
+    const linkSource = pdf_base64;
+    const downloadLink = document.createElement("a");
+    const fileName = "SeguroMedico.pdf";
+
+    downloadLink.href = linkSource;
+    downloadLink.download = fileName;
+    downloadLink.click();
+
+    return downloadLink;
+  }
+
+  convertFileCertificado(event){
+    var pdftobase64 = function(file,form){
+      Swal.fire({
+        title: 'Espera un momento!',
+        html: 'El archivo PDF se está cargando',
+        allowOutsideClick: false,
+        onBeforeOpen: () => {
+          Swal.showLoading()
+        },
+      });
+
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function(){
+        form.controls['certificado_medico'].setValue(reader.result);
+        Swal.close();
+      };
+      reader.onerror = function(error){
+        console.log('Error: ',error);
+      };
+    }
+    pdftobase64(<File> event.target.files[0], this.alumnoForm);
+  }
+
+  showPDFCertificado(pdf_base64){
+    const linkSource = pdf_base64;
+    const downloadLink = document.createElement("a");
+    const fileName = "CertificadoMedico.pdf";
+
+    downloadLink.href = linkSource;
+    downloadLink.download = fileName;
+    downloadLink.click();
+
+    return downloadLink;
+  }
+
+  convertFileCarta(event){
     var pdftobase64 = function(file,form){
       Swal.fire({
         title: 'Espera un momento!',
@@ -251,10 +283,10 @@ export class AlumnoComponent implements OnInit {
     pdftobase64(<File> event.target.files[0], this.alumnoForm);
   }
 
-  showPDF(pdf_base64){
+  showPDFCarta(pdf_base64){
     const linkSource = pdf_base64;
     const downloadLink = document.createElement("a");
-    const fileName = "sample.pdf";
+    const fileName = "CartaResponsiva.pdf";
 
     downloadLink.href = linkSource;
     downloadLink.download = fileName;
@@ -271,6 +303,7 @@ export class AlumnoComponent implements OnInit {
   ]
 
   cintas = []
+
   cintasSeleccion = {
     'Tae Kwon Do': ["10° KUP - Blanco","9° KUP - Naranja", "8° KUP - Amarillo","7° KUP - Amarillo Avanzado",
       "6° KUP - Verde", "5° KUP - Verde Avanzado", "4° KUP - Azul", "3° KUP - Azul Avanzado", "2° KUP - Rojo",
@@ -280,7 +313,13 @@ export class AlumnoComponent implements OnInit {
   }
 
   cambioCinta(seleccion){
-    this.cintas = this.cintasSeleccion[seleccion]
+    this.cintas = this.cintasSeleccion[seleccion];
+    this.alumnoForm.controls['actividad_marcial'].setValue(seleccion);
+  }
+
+  chequeoGrado(seleccion){
+    console.log(seleccion);
+    this.alumnoForm.controls['grado'].setValue(seleccion);
   }
 
   // Implementación para mostrar el perfil
@@ -290,6 +329,9 @@ export class AlumnoComponent implements OnInit {
   alumnoActividad: String;
   alumnoGrado: String;
   alumnoImagen: String;
+  alumnoCarta: String;
+  alumnoSeguro: String;
+  alumnoCertificado: String;
 
   openModalPerfil(alumno: Alumno){
     this.modalTitle = "Perfil";
@@ -299,6 +341,9 @@ export class AlumnoComponent implements OnInit {
     this.alumnoActividad = alumno.actividad_marcial;
     this.alumnoGrado = alumno.grado;
     this.alumnoImagen = alumno.fotografia;
+    this.alumnoCarta = alumno.carta_responsiva;
+    this.alumnoSeguro = alumno.seguro_medico;
+    this.alumnoCertificado = alumno.certificado_medico;
     $("#alumnoPerfil").modal("show");
   }
 
