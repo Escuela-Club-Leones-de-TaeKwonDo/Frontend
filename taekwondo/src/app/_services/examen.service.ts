@@ -35,4 +35,8 @@ export class ExamenService {
   createEx_al(examenLista: ExamenLista){
     return this.http.post(this.API_URI+"/examenA/",examenLista);
   }
+
+  getAlumnos(id:number){
+    return this.http.get(this.API_URI+'/examenA/'+id);
+  }
 }

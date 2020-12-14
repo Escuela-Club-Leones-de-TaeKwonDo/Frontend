@@ -42,12 +42,11 @@ export class ExamenComponent implements OnInit {
     //Consulte la lista de examenes
     this.getExamenes();
     this.alumnoSeleccionado = 0;
-    this.getAlumnos();
   }
 
-  getAlumnos(){
+  getAlumnos(id){
     this.alumnos = [];
-    this.alumnoService.getAlumnos().subscribe(
+    this.examenService.getAlumnos(id).subscribe(
       res => {
         this.alumnos = res;
       },
