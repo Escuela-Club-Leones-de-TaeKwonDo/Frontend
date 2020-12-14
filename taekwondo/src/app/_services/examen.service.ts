@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Examen } from '../_models/examen';
+import { ExamenLista } from '../_models/examenLista';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,9 @@ export class ExamenService {
 
   deleteExamen(id: number){
     return this.http.delete(this.API_URI+'/examen/'+id);
+  }
+
+  createEx_al(examenLista: ExamenLista){
+    return this.http.post(this.API_URI+"/examenA/",examenLista);
   }
 }

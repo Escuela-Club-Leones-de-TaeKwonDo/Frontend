@@ -45,8 +45,8 @@ export class AlumnoComponent implements OnInit {
 
   // Consultar lista de alumnos
   getAlumnos(){
-    this.alumnos = [new Alumno(1, "Kevin", "Villegas", "11-10-1997", "Foto", "Tae Kwon Do", "Cinta Negra", "Seguro M", "Certificado M", "Carta R", "Pass", "Mail"),
-                    new Alumno(2, "Ricardo", "Salvador", "10-11-1997", "Fotografia", "Kick Boxing", "Cinta Morada", "Seguro", "Certificado", "Carta", "Password", "Email")];
+    this.alumnos = [];// [new Alumno(1, "Kevin", "Villegas", "11-10-1997", "Foto", "Tae Kwon Do", "Cinta Negra", "Seguro M", "Certificado M", "Carta R", "Pass", "Mail"),
+                    //new Alumno(2, "Ricardo", "Salvador", "10-11-1997", "Fotografia", "Kick Boxing", "Cinta Morada", "Seguro", "Certificado", "Carta", "Password", "Email")];
     this.alumnoService.getAlumnos().subscribe(
       res => {
         this.alumnos = res;

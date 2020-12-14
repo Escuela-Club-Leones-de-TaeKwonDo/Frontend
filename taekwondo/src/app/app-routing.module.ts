@@ -19,23 +19,23 @@ const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'login', component: LoginComponent },
   { path: 'login-admin', component: LoginAdministadorComponent },
-  /*{
+  {
     path: 'alumno',
     component: AlumnoComponent,
     canActivate: [AuthGuard],
     data: { 
       expectedRole: 'admin@mail.com'
     } 
-  },*/
-  { path: 'alumno', component: AlumnoComponent },
-  {
+  },
+  /*{
     path: 'evento',
     component: EventoComponent,
     canActivate: [AuthGuard],
     data: { 
       expectedRole: 'admin@mail.com'
     } 
-  },
+  },*/
+  { path: 'evento', component: EventoComponent },
   {
     path: 'examen',
     component: ExamenComponent,

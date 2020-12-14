@@ -8,9 +8,12 @@ import { EventoService } from 'src/app/_services/evento.service'
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Router } from '@angular/router';
+import { Event, Router } from '@angular/router';
 
 import Swal from 'sweetalert2';
+import { Alumno } from 'src/app/_models/alumno';
+import { AlumnoService } from 'src/app/_services/alumno.service';
+import { EventoLista } from 'src/app/_models/eventoLista';
 
 declare var $: any;
 
@@ -22,10 +25,14 @@ declare var $: any;
 
 export class EventoComponent implements OnInit {
 
+  evento: Evento | any;
   eventos: Evento[];
   eventoForm: FormGroup;
   submitted = false; 
   modalTitle: String;
+
+  alumnos: Alumno[] | any;
+  alumnoSeleccionado: number;
 
   tipoEventos: TipoEvento[] | any;
   tipoEventoSeleccionado: number;
@@ -33,7 +40,8 @@ export class EventoComponent implements OnInit {
   constructor(private tipoEventoService: TipoEventoService,
     private eventoService: EventoService,
     private formBuilder: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private alumnoService: AlumnoService) { }
 
   ngOnInit(): void {
     //inicia el formulario vacio 
@@ -50,6 +58,8 @@ export class EventoComponent implements OnInit {
     //Consulte la lista de eventos
     this.getTipoEventos();
     this.tipoEventoSeleccionado = 0;
+    this.alumnoSeleccionado = 0;
+    this.getAlumnos();
   }
 
   getTipoEventos(){
@@ -62,11 +72,31 @@ export class EventoComponent implements OnInit {
     )
   }
 
+  getAlumnos(){
+    this.alumnos = [];
+    this.alumnoService.getAlumnos().subscribe(
+      res => {
+        this.alumnos = res;
+      },
+      err => console.error(err)
+    )
+  }
+
   getEventoTipoEvento(id: number){
     this.eventos = [];
     this.eventoService.getEventosTipoEvento(id).subscribe(
       res => {
         this.eventos = res;
+      },
+      err => console.error(err)
+    )
+  }
+
+  getEvento(id){
+    this.evento = null;
+    this.eventoService.getEvento(id).subscribe(
+      res => {
+        this.evento = res;
       },
       err => console.error(err)
     )
@@ -98,6 +128,22 @@ export class EventoComponent implements OnInit {
         )
       }
     })
+  }
+
+  createEv_al(evento: Evento){
+    this.eventoService.createEv_al(new EventoLista(evento.id,this.alumnoSeleccionado)).subscribe(
+      res => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'se ha registrado el alumno',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        $("#asignaModal").modal("hide");
+      },
+      err => console.error(err)
+    )
   }
 
   // Crear un evento
@@ -169,6 +215,11 @@ export class EventoComponent implements OnInit {
     
     this.modalTitle = "Actualizar";
     $("#eventoModal").modal("show");
+  }
+
+  asignarAlumno(evento: Evento){
+    this.modalTitle = "Asignar alumno a " + evento.nombre;
+    $("#asignarModal").modal("show");
   }
 
   get f() { return this.eventoForm.controls; }

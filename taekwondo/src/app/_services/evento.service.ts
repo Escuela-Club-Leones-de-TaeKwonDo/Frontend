@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Evento } from '../_models/evento';
+import { EventoLista } from '../_models/eventoLista';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,9 @@ export class EventoService {
 
   deleteEvento(id: number){
     return this.http.delete(this.API_URI+'/evento/'+id);
+  }
+
+  createEv_al(eventoLista: EventoLista){
+    return this.http.post(this.API_URI+"/eventoA/",eventoLista);
   }
 }

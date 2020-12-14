@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Alumno } from 'src/app/_models/alumno';
 import { Examen } from 'src/app/_models/examen';
+import { ExamenLista } from 'src/app/_models/examenLista';
+import { AlumnoService } from 'src/app/_services/alumno.service';
 import { ExamenService } from 'src/app/_services/examen.service';
 import { LoginService } from 'src/app/_services/login.service';
 import Swal from 'sweetalert2';
@@ -20,7 +23,10 @@ export class ExamenComponent implements OnInit {
   submitted = false;
   modalTitle: String;
 
-  constructor(private examenService: ExamenService, private loginService: LoginService, private formBuilder: FormBuilder) { }
+  alumnos: Alumno[] | any;
+  alumnoSeleccionado: number;
+
+  constructor(private examenService: ExamenService, private loginService: LoginService, private formBuilder: FormBuilder, private alumnoService: AlumnoService) { }
 
   ngOnInit(): void {
     this.examenForm = this.formBuilder.group({
@@ -35,6 +41,18 @@ export class ExamenComponent implements OnInit {
     });
     //Consulte la lista de examenes
     this.getExamenes();
+    this.alumnoSeleccionado = 0;
+    this.getAlumnos();
+  }
+
+  getAlumnos(){
+    this.alumnos = [];
+    this.alumnoService.getAlumnos().subscribe(
+      res => {
+        this.alumnos = res;
+      },
+      err => console.error(err)
+    )
   }
 
   // Consultar lista de examenes
@@ -55,6 +73,22 @@ export class ExamenComponent implements OnInit {
     this.examenService.getExamen(id).subscribe(
       res => {
         this.examen = res;
+      },
+      err => console.error(err)
+    )
+  }
+
+  createEx_al(examen: Examen){
+    this.examenService.createEx_al(new ExamenLista(examen.id,this.alumnoSeleccionado)).subscribe(
+      res => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'se ha registrado el alumno',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        $("#asignaModal").modal("hide");
       },
       err => console.error(err)
     )
@@ -190,6 +224,11 @@ export class ExamenComponent implements OnInit {
     downloadLink.click();
 
     return downloadLink;
+  }
+
+  asignarAlumno(examen: Examen){
+    this.modalTitle = "Asignar alumno a " + examen.nombre;
+    $("#asignarModal").modal("show");
   }
 
   tipoExamen = [

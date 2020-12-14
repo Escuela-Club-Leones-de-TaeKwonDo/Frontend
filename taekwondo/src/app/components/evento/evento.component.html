@@ -26,7 +26,6 @@
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th class="text-center">Nombre</th>
                         <th class="text-center">Descripción</th>
                         <th class="text-center">Fecha de Inicio</th>
                         <th class="text-center">Fecha de Finalización</th>
@@ -43,9 +42,10 @@
                         <td class="text-center">{{ evento.fecha_fin }}</td>
                         <td class="text-center">{{ evento.costo }}</td>
                         <td class="text-center">{{ evento.enlace_facebook }}</td>
-
                         <td>
                             <div>
+                                <button (click)="asignarAlumno(evento)" type="button" class="btn btn-outline-primary">Asignar alumno <i class="fas fa-edit"></i></button>
+                                &nbsp;&nbsp;
                                 <button (click)="updateEvento(evento)" type="button" class="btn btn-outline-primary">Editar <i class="fas fa-edit"></i></button>
                                 &nbsp;&nbsp;
                                 <button (click)="deleteEvento(evento.id)" type="button" class="btn btn-outline-danger">Eliminar <i class="fas fa-trash"></i></button>
@@ -142,6 +142,33 @@
                 <button class="btn btn-danger" data-dismiss="modal">Cerrar</button>
             </div>
 
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<div class="modal" id="asignarModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><i class="far fa-calendar-plus"></i>&nbsp;&nbsp;{{modalTitle}}</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row text-center" (ngSubmit)="createEv_al(evento)">
+                    <label for="colFormLabel" class="col-sm-2 col-form-label">Alumnos: </label>
+                    <div class="col-sm-6">
+                        <select class="form-control" [(ngModel)]="alumnoSeleccionado" (change)="getEventoTipoEvento(tipoEventoSeleccionado)" name="alumnoSeleccionado" id="alumnoSeleccionado">
+                            <option [ngValue]="undefined" hidden>Selecciona un alumno...</option>
+                            <option *ngFor="let alumno of alumnos" [ngValue]="alumno.id">{{ alumno.email }}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-success btn-block">Inscribir</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
